@@ -9,15 +9,18 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MKMapViewDelegate{
 
     @IBOutlet var mapSwipeGesture: UISwipeGestureRecognizer!
     
     //UA's GPS coords 41.075931, -81.511134
     @IBOutlet weak var AkronMap: MKMapView!
+    var classRoute: MKRoute!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        AkronMap.delegate = self
         
         let defaultLocation = CLLocationCoordinate2D(latitude: 41.075931, longitude: -81.511134)
         //Set the map to the hybrid display
@@ -30,8 +33,10 @@ class ViewController: UIViewController {
         //print("HERE")
         //print(AkronMap.region)
         AkronMap.mapType = MKMapType.hybrid
+        //AkronMap.delegate = self
         populateBuildings()
         print("IN PRIMARY VIEW CONTROLLER")
+        examplePath()
         
     }
 
@@ -54,6 +59,62 @@ class ViewController: UIViewController {
         AkronMap.addAnnotation(building1)
         
         
+    }
+    
+    func examplePath(){
+        //Zook Hall
+        let gpsLocationStart: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.076430, longitude: -81.511526)
+        let startPlacemark: MKPlacemark = MKPlacemark(coordinate: gpsLocationStart)
+        let startLocation: MKMapItem = MKMapItem(placemark: startPlacemark)
+        
+        //Bierce
+        let gpsLocationEnd: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.076758, longitude: -81.510640)
+        
+        //White house
+        //38.897685, -77.036530
+        //let gpsLocationEnd: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 38.897685, longitude: -77.036530)
+        let endPlacemark: MKPlacemark = MKPlacemark(coordinate: gpsLocationEnd)
+        let endLocation: MKMapItem = MKMapItem(placemark: endPlacemark)
+        
+        
+        let directionsRequest: MKDirectionsRequest = MKDirectionsRequest()
+        directionsRequest.source = startLocation
+        directionsRequest.destination = endLocation
+        directionsRequest.transportType = MKDirectionsTransportType.walking
+        //directionsRequest.transportType = MKDirectionsTransportType.automobile
+        
+        let directions: MKDirections = MKDirections(request: directionsRequest)
+        directions.calculate(completionHandler: {
+            response, error in
+            
+            if error == nil {
+                print("VALID ROUTE")
+                let validRoute: MKRoute = response!.routes[0]
+                //self.AkronMap.add(validRoute.polyline, level: MKOverlayLevel.aboveRoads)
+                self.classRoute = validRoute
+                self.AkronMap.add(self.classRoute.polyline, level: MKOverlayLevel.aboveRoads)
+                //self.AkronMap.addOverlays(validRoute.polyline.)
+                //let rect = validRoute.polyline.boundingMapRect
+                //self.AkronMap.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+                print(validRoute.distance)
+                
+            }else{
+                print("INVALID ROUTE")
+            }
+        
+        })
+        
+        
+        
+    }
+    //Need to actually draw the line.
+    //Requires view Controller to be a delegate
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        let drawLine = MKPolylineRenderer(polyline: self.classRoute.polyline)
+        drawLine.strokeColor = UIColor.red
+        drawLine.lineWidth = 3
+        return drawLine
     }
 
 }
