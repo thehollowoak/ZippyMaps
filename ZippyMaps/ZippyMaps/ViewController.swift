@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         //print("HERE")
         //print(AkronMap.region)
         AkronMap.mapType = MKMapType.hybrid
-        
+        populateBuildings()
         print("IN PRIMARY VIEW CONTROLLER")
         
     }
@@ -41,6 +41,20 @@ class ViewController: UIViewController {
     }
     
 
+    func populateBuildings(){
+        //Zook Hall 41.076430, -81.511526
+        //CAS 41.077726, -81.510762
+        //Leigh Hall 41.077726, -81.510762
+        //Bierce Library 41.076758, -81.510640
+        
+        let building1 = MKPointAnnotation()
+        building1.coordinate = CLLocationCoordinate2D(latitude: 41.076430, longitude: -81.511526)
+        building1.title = "Zook Hall"
+        
+        AkronMap.addAnnotation(building1)
+        
+        
+    }
 
 }
 
