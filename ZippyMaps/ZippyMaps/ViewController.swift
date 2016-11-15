@@ -11,6 +11,8 @@ import MapKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var mapSwipeGesture: UISwipeGestureRecognizer!
+    
     //UA's GPS coords 41.075931, -81.511134
     @IBOutlet weak var AkronMap: MKMapView!
     
@@ -25,9 +27,11 @@ class ViewController: UIViewController {
         let areaRegion: CLLocationDistance = 500
         let defaultRegion = MKCoordinateRegionMakeWithDistance(defaultLocation, areaRegion, areaRegion)
         AkronMap.setRegion(defaultRegion, animated: false)
-        print("HERE")
-        print(AkronMap.region)
+        //print("HERE")
+        //print(AkronMap.region)
         AkronMap.mapType = MKMapType.hybrid
+        
+        print("IN PRIMARY VIEW CONTROLLER")
         
     }
 
@@ -35,6 +39,7 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
 
 }

@@ -10,7 +10,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ZippyMaps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" id="BYZ-38-t0r" customClass="ViewController" customModule="ZippyMaps" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -29,13 +29,49 @@
                             <constraint firstItem="WJM-PP-d1N" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Qi2-Gr-KQu"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WJM-PP-d1N" secondAttribute="bottom" id="aEE-e6-NOc"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="AvM-sr-GS2" appends="YES" id="tGn-eT-sdk"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="AkronMap" destination="WJM-PP-d1N" id="F3r-Bz-RU8"/>
+                        <outlet property="mapSwipeGesture" destination="AvM-sr-GS2" id="Cdd-HW-Svp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="AvM-sr-GS2">
+                    <connections>
+                        <segue destination="HG1-EZ-GRc" kind="showDetail" id="jqv-IG-VFv"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
+        </scene>
+        <!--CoordinatesViewController-->
+        <scene sceneID="eMX-6B-msw">
+            <objects>
+                <viewController title="CoordinatesViewController" modalTransitionStyle="flipHorizontal" id="HG1-EZ-GRc" customClass="CoordinatesViewContoller" customModule="ZippyMaps" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bUm-Sb-Yfb"/>
+                        <viewControllerLayoutGuide type="bottom" id="XiW-eo-I91"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dD9-Ev-7XC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Jsh-V0-qKr" appends="YES" id="JvY-Cq-QWD"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4CU-5B-quJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Jsh-V0-qKr">
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" id="lnh-J6-NsZ"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="777" y="36"/>
         </scene>
     </scenes>
 </document>
