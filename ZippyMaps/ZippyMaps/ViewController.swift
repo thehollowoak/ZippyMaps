@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, MKMapViewDelegate{
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet var mapSwipeGesture: UISwipeGestureRecognizer!
     
@@ -24,6 +24,7 @@ class ViewController: UIViewController, MKMapViewDelegate{
         AkronMap.delegate = self
         
         //CLLocation is required to track the user
+        locations.delegate = self
         locations.requestWhenInUseAuthorization()
         
         let defaultLocation = CLLocationCoordinate2D(latitude: 41.075931, longitude: -81.511134)
@@ -46,8 +47,10 @@ class ViewController: UIViewController, MKMapViewDelegate{
         
         
         //Get user location:
-        let currentUserLocation:MKUserLocation = AkronMap.userLocation
-        print("User at: \(currentUserLocation.coordinate.latitude) \(currentUserLocation.coordinate.longitude)")
+        let currentUserLocation = AkronMap.userLocation.coordinate
+        print("User at: \(currentUserLocation.latitude), \(currentUserLocation.longitude)")
+        
+
         
     }
 
@@ -131,6 +134,21 @@ class ViewController: UIViewController, MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: Error) {
         print("Cannot locate the user: \(error)")
     }
+    
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        print("UPDATE")
+        let userCoordinate: CLLocationCoordinate2D = userLocation.coordinate
+        print("Location: Latitude: \(userCoordinate.latitude) Longitude: \(userCoordinate.longitude)")
+    }
+    
+    //CLLocation Manager delegates
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //Todo
+        for location in locations {
+            print("location. Latitude: \(location.coordinate.latitude) Longitude: \(location.coordinate.longitude)")
+        }
+    }
+    
 
 }
 
