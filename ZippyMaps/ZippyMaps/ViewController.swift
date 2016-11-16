@@ -16,15 +16,21 @@ class ViewController: UIViewController, MKMapViewDelegate{
     //UA's GPS coords 41.075931, -81.511134
     @IBOutlet weak var AkronMap: MKMapView!
     var classRoute: MKRoute!
+    var locations: CLLocationManager = CLLocationManager()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         AkronMap.delegate = self
         
+        //CLLocation is required to track the user
+        locations.requestWhenInUseAuthorization()
+        
         let defaultLocation = CLLocationCoordinate2D(latitude: 41.075931, longitude: -81.511134)
         //Set the map to the hybrid display
         AkronMap.mapType = MKMapType.hybrid
+        //Show user location
+        AkronMap.showsUserLocation = true
         
         //Area in meters
         let areaRegion: CLLocationDistance = 500
@@ -37,6 +43,11 @@ class ViewController: UIViewController, MKMapViewDelegate{
         populateBuildings()
         print("IN PRIMARY VIEW CONTROLLER")
         examplePath()
+        
+        
+        //Get user location:
+        let currentUserLocation:MKUserLocation = AkronMap.userLocation
+        print("User at: \(currentUserLocation.coordinate.latitude) \(currentUserLocation.coordinate.longitude)")
         
     }
 
@@ -115,6 +126,10 @@ class ViewController: UIViewController, MKMapViewDelegate{
         drawLine.strokeColor = UIColor.red
         drawLine.lineWidth = 3
         return drawLine
+    }
+    
+    func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: Error) {
+        print("Cannot locate the user: \(error)")
     }
 
 }
