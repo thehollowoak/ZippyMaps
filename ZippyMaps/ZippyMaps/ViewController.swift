@@ -89,7 +89,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //let gpsLocationEnd: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 38.897685, longitude: -77.036530)
         let endPlacemark: MKPlacemark = MKPlacemark(coordinate: gpsLocationEnd)
         let endLocation: MKMapItem = MKMapItem(placemark: endPlacemark)
-        
+        //comment
         
         let directionsRequest: MKDirectionsRequest = MKDirectionsRequest()
         directionsRequest.source = startLocation
