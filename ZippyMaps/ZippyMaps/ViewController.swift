@@ -89,7 +89,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //let gpsLocationEnd: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 38.897685, longitude: -77.036530)
         let endPlacemark: MKPlacemark = MKPlacemark(coordinate: gpsLocationEnd)
         let endLocation: MKMapItem = MKMapItem(placemark: endPlacemark)
-        //comment
         
         let directionsRequest: MKDirectionsRequest = MKDirectionsRequest()
         directionsRequest.source = startLocation
@@ -147,6 +146,28 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         for location in locations {
             print("location. Latitude: \(location.coordinate.latitude) Longitude: \(location.coordinate.longitude)")
         }
+    }
+    
+    
+    func addBuilding(string: newName, double: newLatitude, double: newLongitude) {
+        
+        // make MKPlacemark based on new coordinates
+        let newLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: newLatitude, longitude: newLongitude)
+        let newPlacemark: MKPlacemark = MKPlacemark(coordinate: newLocation)
+        
+        // Write the dictionary to the plist
+        let newBuilding:NSDictionary = [ "Name" : newName, "Placement" : newPlacemark]
+        
+        // write plist as local document
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let url = URL(fileURLWithPath: paths[0]).appendingPathComponent("buildings.plist")
+        
+        DispatchQueue(label:"edu.uakron.cs.ios.tryplist").async {
+            if !newBuilding.write(to: url, atomically: true) {
+                print("Error writing plist to \(url)")
+            }
+        }
+        
     }
     
 
