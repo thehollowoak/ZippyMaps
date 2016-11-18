@@ -26,6 +26,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //CLLocation is required to track the user
         locations.delegate = self
         locations.requestWhenInUseAuthorization()
+        //locations.requestLocation()
+        locations.startUpdatingLocation()
+        locations.startUpdatingHeading()
+        
         
         let defaultLocation = CLLocationCoordinate2D(latitude: 41.075931, longitude: -81.511134)
         //Set the map to the hybrid display
@@ -49,7 +53,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //Get user location:
         let currentUserLocation = AkronMap.userLocation.coordinate
         print("User at: \(currentUserLocation.latitude), \(currentUserLocation.longitude)")
-        
+
 
         
     }
@@ -147,6 +151,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         for location in locations {
             print("location. Latitude: \(location.coordinate.latitude) Longitude: \(location.coordinate.longitude)")
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location failed: \(error)")
     }
     
 

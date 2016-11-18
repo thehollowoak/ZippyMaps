@@ -12,6 +12,7 @@
 		425A155A1DDB915F00865DE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 425A15581DDB915F00865DE9 /* Main.storyboard */; };
 		425A155C1DDB915F00865DE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 425A155B1DDB915F00865DE9 /* Assets.xcassets */; };
 		425A15691DDBA0FC00865DE9 /* CoordinatesViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425A15681DDBA0FC00865DE9 /* CoordinatesViewContoller.swift */; };
+		4265BA671DDFAC910050AA51 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4265BA661DDFAC910050AA51 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		425A155B1DDB915F00865DE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		425A15601DDB915F00865DE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		425A15681DDBA0FC00865DE9 /* CoordinatesViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatesViewContoller.swift; sourceTree = "<group>"; };
+		4265BA661DDFAC910050AA51 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4265BA671DDFAC910050AA51 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +43,7 @@
 			children = (
 				425A15531DDB915F00865DE9 /* ZippyMaps */,
 				425A15521DDB915F00865DE9 /* Products */,
+				4265BA651DDFAC910050AA51 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +66,14 @@
 				425A15601DDB915F00865DE9 /* Info.plist */,
 			);
 			path = ZippyMaps;
+			sourceTree = "<group>";
+		};
+		4265BA651DDFAC910050AA51 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4265BA661DDFAC910050AA51 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,6 +109,11 @@
 					425A15501DDB915F00865DE9 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -291,6 +308,7 @@
 				425A15651DDB915F00865DE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
