@@ -149,7 +149,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     
-    func addBuilding(string: newName, double: newLatitude, double: newLongitude) {
+    func addBuilding(_ newName: String, _ newLatitude: Double, _ newLongitude: Double) {
         
         // make MKPlacemark based on new coordinates
         let newLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: newLatitude, longitude: newLongitude)
