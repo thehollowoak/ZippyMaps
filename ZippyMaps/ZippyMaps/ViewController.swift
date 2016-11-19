@@ -64,16 +64,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
 
     func populateBuildings(){
-        //Zook Hall 41.076430, -81.511526
-        //CAS 41.077726, -81.510762
-        //Leigh Hall 41.077726, -81.510762
-        //Bierce Library 41.076758, -81.510640
+        // read from plist
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let url = URL(fileURLWithPath: paths[0]).appendingPathComponent("buildings.plist")
         
-        let building1 = MKPointAnnotation()
-        building1.coordinate = CLLocationCoordinate2D(latitude: 41.076430, longitude: -81.511526)
-        building1.title = "Zook Hall"
+        guard let buildingData = NSArray(contentsOf: url) else {
+            print("ERROR: reading plist from \(url)")
+            return
+        }
+        for building in buildingData {
+            let temp = building as! NSDictionary
         
-        AkronMap.addAnnotation(building1)
+            let tempBuilding = MKPointAnnotation()
+            tempBuilding.coordinate = CLLocationCoordinate2D(latitude: temp["Latitude"] as! Double, longitude: temp["Longitude"] as! Double)
+            tempBuilding.title = (temp["Name"] as! String)
+            
+            AkronMap.addAnnotation(tempBuilding)
+        }
         
         
     }
@@ -177,7 +184,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         newBuilding.append(building)
         building = [ "Name" : "Crouse Hall", "Latitude" : 41.076356, "Longitude" : -81.512191]
         newBuilding.append(building)
-        building = [ "Name" : "MGH", "Latitude" : 41.075637, "Longitude" : -81.510562]
+        building = [ "Name" : "MGH", "Latitude" : 41.075637, "Longitude" : -81.515000]
         newBuilding.append(building)
         building = [ "Name" : "Leigh Hall", "Latitude" : 41.076197, "Longitude" : -81.510697]
         newBuilding.append(building)
