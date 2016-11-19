@@ -17,6 +17,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var AkronMap: MKMapView!
     var classRoute: MKRoute!
     var locations: CLLocationManager = CLLocationManager()
+    var counter = 1
     
     
     override func viewDidLoad() {
@@ -35,6 +36,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }else{
             print("Heading not available")
         }
+        
+        var testTimer: Timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.testTimerFunc), userInfo: nil, repeats: true)
+        
+        
         
         
         
@@ -77,6 +82,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("Head: \(bearingString(bearing))")
         
         
+    }
+    
+    func testTimerFunc(){
+        print("The count is \(counter)")
+        counter = counter + 1
     }
 
     override func didReceiveMemoryWarning() {
