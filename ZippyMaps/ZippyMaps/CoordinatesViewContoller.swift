@@ -9,7 +9,20 @@
 import UIKit
 
 class CoordinatesViewContoller: UIViewController {
+    @IBOutlet weak var myDatePicker: UIDatePicker!
+    @IBOutlet weak var selectedDate: UILabel!
+   /*
+    @IBAction func datePickerAction(sender: AnyObject) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        let strDate = dateFormatter.string(from: myDatePicker.date)
+        self.selectedDate.text = strDate
+    }
+ */
 
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("IN SECONDARY VIEW CONTROLLER")
