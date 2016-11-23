@@ -43,6 +43,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
         
+        //build plist
+        buildPList();
+        
         //CLLocation is required to track the user
         //locations.desiredAccuracy
         locations.requestWhenInUseAuthorization()
@@ -122,16 +125,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
 
     func populateBuildings(){
-        //Zook Hall 41.076430, -81.511526
-        //CAS 41.077726, -81.510762
-        //Leigh Hall 41.077726, -81.510762
-        //Bierce Library 41.076758, -81.510640
+        // read from plist
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let url = URL(fileURLWithPath: paths[0]).appendingPathComponent("buildings.plist")
         
-        let building1 = MKPointAnnotation()
-        building1.coordinate = CLLocationCoordinate2D(latitude: 41.076430, longitude: -81.511526)
-        building1.title = "Zook Hall"
+        guard let buildingData = NSArray(contentsOf: url) else {
+            print("ERROR: reading plist from \(url)")
+            return
+        }
+        for building in buildingData {
+            let temp = building as! NSDictionary
         
-        AkronMap.addAnnotation(building1)
+            let tempBuilding = MKPointAnnotation()
+            tempBuilding.coordinate = CLLocationCoordinate2D(latitude: temp["Latitude"] as! Double, longitude: temp["Longitude"] as! Double)
+            tempBuilding.title = (temp["Name"] as! String)
+            
+            AkronMap.addAnnotation(tempBuilding)
+        }
         
         
     }
@@ -150,7 +160,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //let gpsLocationEnd: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 38.897685, longitude: -77.036530)
         let endPlacemark: MKPlacemark = MKPlacemark(coordinate: gpsLocationEnd)
         let endLocation: MKMapItem = MKMapItem(placemark: endPlacemark)
-        
         
         let directionsRequest: MKDirectionsRequest = MKDirectionsRequest()
         directionsRequest.source = startLocation

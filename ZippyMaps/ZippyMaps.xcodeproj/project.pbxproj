@@ -60,6 +60,7 @@
 			children = (
 				425A15541DDB915F00865DE9 /* AppDelegate.swift */,
 				425A15561DDB915F00865DE9 /* ViewController.swift */,
+				BF362CCA1DDFAD45008394A3 /* buildings.plist */,
 				425A15581DDB915F00865DE9 /* Main.storyboard */,
 				425A15681DDBA0FC00865DE9 /* CoordinatesViewContoller.swift */,
 				425A155B1DDB915F00865DE9 /* Assets.xcassets */,
@@ -141,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				425A155C1DDB915F00865DE9 /* Assets.xcassets in Resources */,
+				BF362CCB1DDFAD45008394A3 /* buildings.plist in Resources */,
 				425A155A1DDB915F00865DE9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
