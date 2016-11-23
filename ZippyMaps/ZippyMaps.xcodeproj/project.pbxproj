@@ -12,7 +12,7 @@
 		425A155A1DDB915F00865DE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 425A15581DDB915F00865DE9 /* Main.storyboard */; };
 		425A155C1DDB915F00865DE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 425A155B1DDB915F00865DE9 /* Assets.xcassets */; };
 		425A15691DDBA0FC00865DE9 /* CoordinatesViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425A15681DDBA0FC00865DE9 /* CoordinatesViewContoller.swift */; };
-		4265BA671DDFAC910050AA51 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4265BA661DDFAC910050AA51 /* MapKit.framework */; };
+		BF362CCB1DDFAD45008394A3 /* buildings.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF362CCA1DDFAD45008394A3 /* buildings.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,7 @@
 		425A155B1DDB915F00865DE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		425A15601DDB915F00865DE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		425A15681DDBA0FC00865DE9 /* CoordinatesViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatesViewContoller.swift; sourceTree = "<group>"; };
-		4265BA661DDFAC910050AA51 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		BF362CCA1DDFAD45008394A3 /* buildings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = buildings.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

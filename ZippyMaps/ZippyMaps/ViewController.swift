@@ -30,6 +30,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if(locationAuthorization == CLAuthorizationStatus.denied){
             print("Location authorization error")
         }
+        //build plist
+        buildPList();
         
         if(CLLocationManager.headingAvailable()){
             print("Heading available")
@@ -42,9 +44,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
         
-        
-        //build plist
-        buildPList();
         
         //CLLocation is required to track the user
         //locations.desiredAccuracy
@@ -242,6 +241,74 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
     }
+    
+    func buildPList() {
+        
+        var newBuilding: [NSDictionary] = []
+        
+        var building: NSDictionary = [ "Name" : "Guzzetta Hall", "Latitude" : 41.077726, "Longitude" : -81.514078]
+        newBuilding.append(building)
+        building = [ "Name" : "CAS", "Latitude" : 41.077640, "Longitude" : -81.510562]
+        newBuilding.append(building)
+        building = [ "Name" : "APTC", "Latitude" : 41.080874, "Longitude" : -81.511260]
+        newBuilding.append(building)
+        building = [ "Name" : "ASEC", "Latitude" : 41.076141, "Longitude" : -81.514099]
+        newBuilding.append(building)
+        building = [ "Name" : "Ayer Hall", "Latitude" : 41.076276, "Longitude" : -81.513018]
+        newBuilding.append(building)
+        building = [ "Name" : "Bierce Library", "Latitude" : 41.076963, "Longitude" : -81.510136]
+        newBuilding.append(building)
+        building = [ "Name" : "Buchtel Hall", "Latitude" : 41.075925, "Longitude" : -81.511142]
+        newBuilding.append(building)
+        building = [ "Name" : "BCCE", "Latitude" : 41.077267, "Longitude" : -81.516685]
+        newBuilding.append(building)
+        building = [ "Name" : "CBA", "Latitude" : 41.077587, "Longitude" : -81.517660]
+        newBuilding.append(building)
+        building = [ "Name" : "Computer Center", "Latitude" : 41.075733, "Longitude" : -81.515508]
+        newBuilding.append(building)
+        building = [ "Name" : "Crouse Hall", "Latitude" : 41.076356, "Longitude" : -81.512191]
+        newBuilding.append(building)
+        building = [ "Name" : "MGH", "Latitude" : 41.075637, "Longitude" : -81.515000]
+        newBuilding.append(building)
+        building = [ "Name" : "Leigh Hall", "Latitude" : 41.076197, "Longitude" : -81.510697]
+        newBuilding.append(building)
+        building = [ "Name" : "Kolbe Hall", "Latitude" : 41.076324, "Longitude" : -81.509987]
+        newBuilding.append(building)
+        building = [ "Name" : "LAW", "Latitude" : 41.077328, "Longitude" : -81.515621]
+        newBuilding.append(building)
+        building = [ "Name" : "Olin Hall", "Latitude" : 41.077029, "Longitude" : -81.508754]
+        newBuilding.append(building)
+        building = [ "Name" : "JAR", "Latitude" : 41.075905, "Longitude" : -81.508711]
+        newBuilding.append(building)
+        building = [ "Name" : "SHN", "Latitude" : 41.075023, "Longitude" : -81.513636]
+        newBuilding.append(building)
+        building = [ "Name" : "SHS", "Latitude" : 41.074433, "Longitude" : -81.513979]
+        newBuilding.append(building)
+        building = [ "Name" : "Simmons Hall", "Latitude" : 41.078574, "Longitude" : -81.511747]
+        newBuilding.append(building)
+        building = [ "Name" : "Student Union", "Latitude" : 41.075630, "Longitude" : -81.512370]
+        newBuilding.append(building)
+        building = [ "Name" : "West Hall", "Latitude" : 41.076956, "Longitude" : -81.515846]
+        newBuilding.append(building)
+        building = [ "Name" : "Whitby Hall", "Latitude" : 41.076172, "Longitude" : -81.514558]
+        newBuilding.append(building)
+        building = [ "Name" : "Zook Hall", "Latitude" : 41.076204, "Longitude" : -81.511597]
+        newBuilding.append(building)
+        
+        // write plist as local document
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let url = URL(fileURLWithPath: paths[0]).appendingPathComponent("buildings.plist")
+        print(paths[0])
+        
+        DispatchQueue(label:"edu.uakron.cs.ios.tryplist").async {
+            let testArray = newBuilding as NSArray
+            if !testArray.write(to: url, atomically: true) {
+                print("Error writing plist to \(url)")
+            }
+        }
+        
+    }
+
     
     //Need to actually draw the line.
     //Requires view Controller to be a delegate
