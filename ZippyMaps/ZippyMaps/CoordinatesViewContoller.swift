@@ -83,13 +83,18 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("Switching to: \(segue.destination.title!)")
+        print("Switching to: \(segue.destination.title)")
         print("\(segue.destination)")
         guard let dest = segue.destination as? ViewController else {
             print("Error assigning destination view controller")
             return
         }
         
+        var row:Int = 0
+        row = self.buildingPicker.selectedRow(inComponent: row)
+        let building = buildings[row]
+        
+        dest.targetBuilding = building
         
     }
 

@@ -20,6 +20,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var counter = 1
     
     var newBuilding: [NSDictionary] = []
+    var targetBuilding: NSDictionary = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +41,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print("Heading not available")
         }
         
-        var testTimer: Timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.testTimerFunc), userInfo: nil, repeats: true)
-        
+        //var testTimer: Timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.testTimerFunc), userInfo: nil, repeats: true)
         
         
         
@@ -70,7 +70,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //AkronMap.delegate = self
         populateBuildings()
         print("IN PRIMARY VIEW CONTROLLER")
-        examplePath()
+        
+        //Draw example path
+        //examplePath()
+ 
         
         
         //Get user location:
@@ -78,11 +81,58 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("User at: \(currentUserLocation.latitude), \(currentUserLocation.longitude)")
 
 
-        
+        /*
         let human = CLLocationCoordinate2D(latitude: 41.076041, longitude: -80.511550)
         let building = CLLocationCoordinate2D(latitude: 41.076041, longitude: -81.511142)
         let bearing = angle(human, building)
         print("Head: \(bearingString(bearing))")
+        */
+        
+        
+        
+    }
+    
+    func drawPath(){
+        let currentUserLocation = AkronMap.userLocation.coordinate
+        
+
+        let gpsLocationStart: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: currentUserLocation.latitude, longitude: currentUserLocation.longitude)
+        let startPlacemark: MKPlacemark = MKPlacemark(coordinate: gpsLocationStart)
+        let startLocation: MKMapItem = MKMapItem(placemark: startPlacemark)
+        
+        //Destination
+        let gpsLocationEnd: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: targetBuilding.value(forKey: "Latitude") as! Double , longitude: targetBuilding.value(forKey: "Longitude") as! Double)
+        
+        print("TEST TEST TEST\(gpsLocationStart.latitude) + \(gpsLocationEnd.latitude)")
+        let endPlacemark: MKPlacemark = MKPlacemark(coordinate: gpsLocationEnd)
+        let endLocation: MKMapItem = MKMapItem(placemark: endPlacemark)
+        
+        let directionsRequest: MKDirectionsRequest = MKDirectionsRequest()
+        directionsRequest.source = startLocation
+        directionsRequest.destination = endLocation
+        directionsRequest.transportType = MKDirectionsTransportType.walking
+        
+        let directions: MKDirections = MKDirections(request: directionsRequest)
+        directions.calculate(completionHandler: {
+            response, error in
+            
+            if error == nil {
+                print("VALID ROUTE")
+                let validRoute: MKRoute = response!.routes[0]
+                //self.AkronMap.add(validRoute.polyline, level: MKOverlayLevel.aboveRoads)
+                self.classRoute = validRoute
+                self.AkronMap.add(self.classRoute.polyline, level: MKOverlayLevel.aboveRoads)
+                //self.AkronMap.addOverlays(validRoute.polyline.)
+                //let rect = validRoute.polyline.boundingMapRect
+                //self.AkronMap.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+                print(validRoute.distance)
+                
+            }else{
+                print("INVALID ROUTE")
+            }
+            
+        })
+        
         
         
     }
@@ -329,6 +379,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("UPDATE")
         let userCoordinate: CLLocationCoordinate2D = userLocation.coordinate
         print("Location: Latitude: \(userCoordinate.latitude) Longitude: \(userCoordinate.longitude)")
+        
+        
+        if (targetBuilding.count == 0) {
+            print("No target")
+        }else{
+            print("Given target, drawing path")
+            drawPath()
+        }
+        
         return
     }
     
