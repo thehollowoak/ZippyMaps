@@ -32,9 +32,16 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     @IBAction func routeSelectPress(_ sender: AnyObject) {
+        print("Route button pressed")
         var row:Int = 0
         row = buildingPicker.selectedRow(inComponent: row)
-        print("\(row)")
+        let building = buildings[row]
+        guard let name: String = building.value(forKey: "Name") as? String else {
+            print("Cannot convert building name to string")
+            return
+        }
+        print("Building: \(name)")
+
     }
 
     /*
@@ -75,6 +82,16 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
         print("Building: \(name)")
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("Switching to: \(segue.destination.title!)")
+        print("\(segue.destination)")
+        guard let dest = segue.destination as? ViewController else {
+            print("Error assigning destination view controller")
+            return
+        }
+        
+        
+    }
 
     
 
