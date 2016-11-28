@@ -19,6 +19,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var locations: CLLocationManager = CLLocationManager()
     var counter = 1
     
+    var newBuilding: [NSDictionary] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -244,7 +245,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func buildPList() {
         
-        var newBuilding: [NSDictionary] = []
+        //var newBuilding: [NSDictionary] = []
         
         var building: NSDictionary = [ "Name" : "Guzzetta Hall", "Latitude" : 41.077726, "Longitude" : -81.514078]
         newBuilding.append(building)
@@ -301,7 +302,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print(paths[0])
         
         DispatchQueue(label:"edu.uakron.cs.ios.tryplist").async {
-            let testArray = newBuilding as NSArray
+            let testArray = self.newBuilding as NSArray
             if !testArray.write(to: url, atomically: true) {
                 print("Error writing plist to \(url)")
             }
@@ -351,6 +352,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //Heading will not work do lack of compass simulation
         print("Heading update")
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("Switching to: \(segue.destination.title!)")
+        print("\(segue.destination)")
+        guard let dest = segue.destination as? CoordinatesViewContoller else {
+            print("Error assigning destination view controller")
+            return
+        }
+        
+        dest.buildings = self.newBuilding
+        print("Sent building data")
     }
 
 }

@@ -57,12 +57,32 @@
                     <view key="view" contentMode="scaleToFill" id="dD9-Ev-7XC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yr2-xj-s9I"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pF-Fx-DSb">
+                                <frame key="frameInset" minX="156" minY="236" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Route"/>
+                                <connections>
+                                    <action selector="routeSelectPress:" destination="HG1-EZ-GRc" eventType="touchDown" id="pwX-8c-zoF"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="yr2-xj-s9I" firstAttribute="leading" secondItem="dD9-Ev-7XC" secondAttribute="leading" id="E48-qy-J4y"/>
+                            <constraint firstAttribute="trailing" secondItem="yr2-xj-s9I" secondAttribute="trailing" id="msn-pl-1EK"/>
+                            <constraint firstItem="yr2-xj-s9I" firstAttribute="top" secondItem="dD9-Ev-7XC" secondAttribute="top" id="xN3-Y9-Zft"/>
+                        </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Jsh-V0-qKr" appends="YES" id="JvY-Cq-QWD"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="buildingPicker" destination="yr2-xj-s9I" id="xsC-kt-68R"/>
+                        <outlet property="selectRouteButton" destination="7pF-Fx-DSb" id="Kaw-1b-C4N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4CU-5B-quJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="Jsh-V0-qKr">
@@ -71,7 +91,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1359" y="48"/>
+            <point key="canvasLocation" x="1357.5999999999999" y="47.226386806596707"/>
         </scene>
     </scenes>
 </document>
