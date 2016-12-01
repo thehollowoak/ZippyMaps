@@ -177,7 +177,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func populateBuildings(){
         // read from plist
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        
         let url = URL(fileURLWithPath: paths[0]).appendingPathComponent("buildings.plist")
+        
+        print("FILE HERE PLIST \(url)")
         
         guard let buildingData = NSArray(contentsOf: url) else {
             print("ERROR: reading plist from \(url)")

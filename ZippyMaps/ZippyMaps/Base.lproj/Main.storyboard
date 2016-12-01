@@ -68,19 +68,19 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1dP-HW-qmg">
-                                <frame key="frameInset" minX="40" minY="319" width="240" height="128"/>
+                                <frame key="frameInset" minX="16" minY="314" width="351" height="259"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Nqw-BW-n2Q" customClass="ClassScheduleViewCellTableViewCell" customModule="ZippyMaps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="240" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Nqw-BW-n2Q" customClass="ClassScheduleViewCellTableViewCell" customModule="ZippyMaps" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="351" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nqw-BW-n2Q" id="p5A-hl-jfL">
-                                            <frame key="frameInset" width="240" height="43"/>
+                                            <frame key="frameInset" width="351" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4N-Xt-FrT">
-                                                    <frame key="frameInset" minX="8" minY="11" width="88" height="21"/>
+                                                    <frame key="frameInset" minX="8" minY="11" width="236" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -108,6 +108,7 @@
                     </view>
                     <connections>
                         <outlet property="buildingPicker" destination="yr2-xj-s9I" id="xsC-kt-68R"/>
+                        <outlet property="classScheduleTableView" destination="1dP-HW-qmg" id="IHu-QY-HIV"/>
                         <outlet property="selectRouteButton" destination="7pF-Fx-DSb" id="Kaw-1b-C4N"/>
                     </connections>
                 </viewController>

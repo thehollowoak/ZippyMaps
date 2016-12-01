@@ -8,10 +8,13 @@
 
 import UIKit
 
-class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var buildingPicker: UIPickerView!
     @IBOutlet weak var selectRouteButton: UIButton!
+    @IBOutlet weak var classScheduleTableView: UITableView!
+    
+    var classes: [ClassSchedule] = [ClassSchedule]()
     
     let pickerData = ["A", "B", "C"]
     var buildings: [NSDictionary] = []
@@ -23,7 +26,23 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
         
         buildingPicker.delegate = self
         buildingPicker.dataSource = self
+        
+        //classScheduleTableView.load
+        classScheduleTableView.delegate = self
+        classScheduleTableView.dataSource = self
 
+        loadSampleClasses()
+        print("Length of classes: \(classes.count)")
+        
+    }
+    
+    func loadSampleClasses() {
+        let a = ClassSchedule("A")
+        let b = ClassSchedule("B")
+        let c = ClassSchedule("C")
+        
+        classes += [a,b,c]
+        print("CLASSES \(classes)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,6 +117,23 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
         
     }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("TABLEVIEW")
+        print(#function)
+        
+        print("NUMBER OF ROWS \(classes.count)")
+        return classes.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("TABLEVIEW")
+        print(#function)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ClassScheduleViewCellTableViewCell
+        let cell_class = classes[indexPath.row]
+        cell.classNameLabel.text = cell_class.className
+        return cell
+    }
+    
+
 
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		425878691DF0B8680062A4F2 /* ClassScheduleViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425878681DF0B8680062A4F2 /* ClassScheduleViewCellTableViewCell.swift */; };
+		4258786F1DF0CDA90062A4F2 /* ClassSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4258786E1DF0CDA90062A4F2 /* ClassSchedule.swift */; };
 		425A15551DDB915F00865DE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425A15541DDB915F00865DE9 /* AppDelegate.swift */; };
 		425A15571DDB915F00865DE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425A15561DDB915F00865DE9 /* ViewController.swift */; };
 		425A155A1DDB915F00865DE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 425A15581DDB915F00865DE9 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		425878681DF0B8680062A4F2 /* ClassScheduleViewCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassScheduleViewCellTableViewCell.swift; sourceTree = "<group>"; };
+		4258786E1DF0CDA90062A4F2 /* ClassSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassSchedule.swift; sourceTree = "<group>"; };
 		425A15511DDB915F00865DE9 /* ZippyMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZippyMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		425A15541DDB915F00865DE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		425A15561DDB915F00865DE9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				425A155B1DDB915F00865DE9 /* Assets.xcassets */,
 				425A15601DDB915F00865DE9 /* Info.plist */,
 				425878681DF0B8680062A4F2 /* ClassScheduleViewCellTableViewCell.swift */,
+				4258786E1DF0CDA90062A4F2 /* ClassSchedule.swift */,
 			);
 			path = ZippyMaps;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4258786F1DF0CDA90062A4F2 /* ClassSchedule.swift in Sources */,
 				425878691DF0B8680062A4F2 /* ClassScheduleViewCellTableViewCell.swift in Sources */,
 				425A15571DDB915F00865DE9 /* ViewController.swift in Sources */,
 				425A15551DDB915F00865DE9 /* AppDelegate.swift in Sources */,
