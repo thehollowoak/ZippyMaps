@@ -8,41 +8,44 @@
 
 import UIKit
 
-class CoordinatesViewContoller: UIViewController {
-    @IBOutlet weak var myDatePicker: UIDatePicker!
-    @IBOutlet weak var selectedDate: UILabel!
-   /*
-    @IBAction func datePickerAction(sender: AnyObject) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-        let strDate = dateFormatter.string(from: myDatePicker.date)
-        self.selectedDate.text = strDate
-    }
- */
+class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate{
+    @IBOutlet weak var picker: UIPickerView! = UIPickerView()
+    @IBOutlet weak var toTextfield: UITextField!
 
-
-    
+    var test = ["1", "2", "3"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("IN SECONDARY VIEW CONTROLLER")
         // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        picker.isHidden = true
+        toTextfield.text = test[0]
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // returns the number of 'columns' to display.
+    func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int{
+        return 1
     }
-    */
+    
+    // returns the # of rows in each component..
+    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int{
+        return test.count
+    }
+    
+    func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
+        return test[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
+    {
+        toTextfield.text = test[row]
+        picker.isHidden = true;
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        picker.isHidden = false
+        return false
+    }
+
 
 }
