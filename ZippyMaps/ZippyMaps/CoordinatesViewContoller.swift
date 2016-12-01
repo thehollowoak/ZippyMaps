@@ -14,10 +14,17 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var selectRouteButton: UIButton!
     @IBOutlet weak var classScheduleTableView: UITableView!
     
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var removeButton: UIButton!
+    
+    
     var classes: [ClassSchedule] = [ClassSchedule]()
     
     let pickerData = ["A", "B", "C"]
     var buildings: [NSDictionary] = []
+    var classTableRowSelected = false
+    var selectedRow:IndexPath
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +44,15 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func loadSampleClasses() {
+        /*
         let a = ClassSchedule("A")
         let b = ClassSchedule("B")
         let c = ClassSchedule("C")
+        */
+        let a = ClassSchedule(NSDate(timeIntervalSince1970: 1480554000), NSDate(timeIntervalSince1970: 1480557600), 0)
+        let b = ClassSchedule(NSDate(timeIntervalSince1970: 1480558500), NSDate(timeIntervalSince1970: 1480562100), 1)
         
-        classes += [a,b,c]
+        classes += [a,b]
         print("CLASSES \(classes)")
     }
 
@@ -130,10 +141,91 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
         print(#function)
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ClassScheduleViewCellTableViewCell
         let cell_class = classes[indexPath.row]
-        cell.classNameLabel.text = cell_class.className
+        let building = buildings[cell_class.rowIndex]
+        guard let buildingName: String = building.value(forKey: "Name") as? String else {
+            print("Could not unwrap building name")
+            cell.classNameLabel.text = "INVALID"
+            return cell
+        }
+        cell.classNameLabel.text = buildingName
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Cell: \(indexPath.row) selected")
+        classTableRowSelected = true
+        selectedRow = indexPath
+        addButton.setTitle("Update", for: .normal)
+    }
+    
 
+    //Buttons
+    @IBAction func addButtonPressed(_ sender: AnyObject) {
+        //Sanity check function if bad message and break
+        
+        if(classTableRowSelected){
+            //Update behavior
+            classTableRowSelected = false
+            addButton.setTitle("Add", for: .normal)
+            classScheduleTableView.deselectRow(at: selectedRow, animated: true)
+        }else{
+            //Add behavior
+            
+            //Get index from building as int
+            //Get times
+            //Create ClassSchedule object
+            //Add to classes
+        }
+        
+        //Reset fields to reasonable values
+        //Save plist
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: AnyObject) {
+        if(classTableRowSelected){
+            classTableRowSelected = false
+            addButton.setTitle("Add", for: .normal)
+            classScheduleTableView.deselectRow(at: selectedRow, animated: true)
+        }
+        
+        //Reset fields to reasonable values
+        //Save plist
+    }
+    
+    @IBAction func removeButtonPressed(_ sender: AnyObject) {
+        if(classTableRowSelected){
+            //Do stuff, otherwise do nothing
+            print(#function)
+        }
+    }
+    
+    
+    func saveSchedulePlist(){
+        // write plist as local document
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let url = URL(fileURLWithPath: paths[0]).appendingPathComponent("schedule.plist")
+        print(paths[0])
+        
+        var schedule: [NSDictionary] = []
+        
+        for item in classes {
+            //Class timedate
+            let classTD: NSDictionary = ["id" : item.rowIndex, "start" : item.startTime.timeIntervalSince1970, "end" : item.endTime.timeIntervalSince1970]
+            print("Class schedule info: \(classTD)")
+            schedule.append(classTD)
+        }
+        
+        DispatchQueue(label:"edu.uakron.cs.ios.ZippyMaps").async {
+            let testArray = schedule as NSArray
+            if !testArray.write(to: url, atomically: true) {
+                print("Error writing plist to \(url)")
+            }
+        }
+    }
+    
+
+
+    
+    
 
 }

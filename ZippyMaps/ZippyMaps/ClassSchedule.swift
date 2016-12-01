@@ -10,9 +10,15 @@ import UIKit
 
 class ClassSchedule: NSObject {
     
-    var className: String
+    //var className: String
+    var startTime: NSDate
+    var endTime: NSDate
+    var rowIndex: Int
     
-    init(_ classNameString: String){
-        className = classNameString
+    init( _ start: NSDate, _ end: NSDate, _ index: Int){
+        //self.className = building
+        self.startTime = start
+        self.endTime = end
+        self.rowIndex = index
     }
 }

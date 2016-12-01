@@ -10,7 +10,9 @@ import UIKit
 
 class ClassScheduleViewCellTableViewCell: UITableViewCell {
     @IBOutlet weak var classNameLabel: UILabel!
-
+    @IBOutlet weak var startTimeLabel: UILabel!
+    @IBOutlet weak var endTimeLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -354,7 +354,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let url = URL(fileURLWithPath: paths[0]).appendingPathComponent("buildings.plist")
         print(paths[0])
         
-        DispatchQueue(label:"edu.uakron.cs.ios.tryplist").async {
+        DispatchQueue(label:"edu.uakron.cs.ios.ZippyMaps").async {
             let testArray = self.newBuilding as NSArray
             if !testArray.write(to: url, atomically: true) {
                 print("Error writing plist to \(url)")
