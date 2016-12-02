@@ -24,7 +24,8 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
     let pickerData = ["A", "B", "C"]
     var buildings: [NSDictionary] = []
     var classTableRowSelected = false
-    var selectedRow:IndexPath
+    //To shut up the compiler
+    //var selectedRow:IndexPath = IndexPath(item: 0, section: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +38,9 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
         //classScheduleTableView.load
         classScheduleTableView.delegate = self
         classScheduleTableView.dataSource = self
-
-        loadSampleClasses()
+        
+        openSchedulePlist()
+        //loadSampleClasses()
         print("Length of classes: \(classes.count)")
         
     }
@@ -154,7 +156,8 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Cell: \(indexPath.row) selected")
         classTableRowSelected = true
-        selectedRow = indexPath
+        //FIXME
+        //selectedRow = indexPath
         addButton.setTitle("Update", for: .normal)
     }
     
@@ -162,12 +165,18 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
     //Buttons
     @IBAction func addButtonPressed(_ sender: AnyObject) {
         //Sanity check function if bad message and break
+        if(!validateClassScheduleItem()){
+            //Yell at user
+            return
+        }
         
         if(classTableRowSelected){
             //Update behavior
             classTableRowSelected = false
             addButton.setTitle("Add", for: .normal)
-            classScheduleTableView.deselectRow(at: selectedRow, animated: true)
+            
+            //FIXME
+            //classScheduleTableView.deselectRow(at: selectedRow, animated: true)
         }else{
             //Add behavior
             
@@ -179,17 +188,21 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
         
         //Reset fields to reasonable values
         //Save plist
+        saveSchedulePlist()
     }
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
         if(classTableRowSelected){
             classTableRowSelected = false
             addButton.setTitle("Add", for: .normal)
-            classScheduleTableView.deselectRow(at: selectedRow, animated: true)
+            
+            //FIX ME
+            //classScheduleTableView.deselectRow(at: selectedRow, animated: true)
         }
         
         //Reset fields to reasonable values
         //Save plist
+        saveSchedulePlist()
     }
     
     @IBAction func removeButtonPressed(_ sender: AnyObject) {
@@ -221,6 +234,52 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
                 print("Error writing plist to \(url)")
             }
         }
+    }
+    
+    func openSchedulePlist(){
+        print("READING")
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let url = URL(fileURLWithPath: paths[0]).appendingPathComponent("schedule.plist")
+        
+        guard let schedule = NSArray(contentsOf: url) else {
+            print("ERROR: reading plist from \(url)")
+            return
+        }
+        print("URL HERE: \(url)")
+        let tempSchedule: [NSDictionary] = schedule as! [NSDictionary]
+        //Blank classes just in case
+        classes = []
+        for scheduleItem in tempSchedule {
+            guard let startTime: Double = scheduleItem["start"] as? Double else{
+                print("Invalid start time")
+                return
+            }
+            guard let endTime: Double = scheduleItem["end"] as? Double else{
+                print("Invalid end time")
+                return
+            }
+            guard let buildingIndex: Int = scheduleItem["id"] as? Int else{
+                print("Invalid building index")
+                return
+            }
+            
+            let sDate: NSDate = NSDate(timeIntervalSince1970: startTime)
+            let eDate: NSDate = NSDate(timeIntervalSince1970: endTime)
+            
+            
+            let addScheduleItem: ClassSchedule = ClassSchedule(sDate, eDate, buildingIndex)
+            
+            print("Schedule item: \(addScheduleItem)")
+                
+
+            classes.append(addScheduleItem)
+        }
+    }
+    
+    func validateClassScheduleItem() -> Bool{
+        //Check if fields valid and fits
+        //15 minute?
+        return true
     }
     
 
