@@ -21,6 +21,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     var newBuilding: [NSDictionary] = []
     var targetBuilding: NSDictionary = [:]
+    var buildings: [NSDictionary] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print("Location authorization error")
         }
         //build plist
-        buildPList();
+        //buildPList();
         
         if(CLLocationManager.headingAvailable()){
             print("Heading available")
@@ -44,7 +45,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //var testTimer: Timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.testTimerFunc), userInfo: nil, repeats: true)
         
         
-        
+        populateBuildings()
         
         //CLLocation is required to track the user
         //locations.desiredAccuracy
@@ -61,7 +62,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         AkronMap.showsUserLocation = true
         
         //Area in meters
-        let areaRegion: CLLocationDistance = 500
+        let areaRegion: CLLocationDistance = 1000
         let defaultRegion = MKCoordinateRegionMakeWithDistance(defaultLocation, areaRegion, areaRegion)
         AkronMap.setRegion(defaultRegion, animated: false)
         //print("HERE")
@@ -74,8 +75,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //Draw example path
         //examplePath()
  
-        
-        
+
+        //let path = Bundle.main.url(forResource: "buildings", withExtension: "plist")
+        //print("THE BUILDINGS FILE: \(path)")
         //Get user location:
         let currentUserLocation = AkronMap.userLocation.coordinate
         print("User at: \(currentUserLocation.latitude), \(currentUserLocation.longitude)")
@@ -91,6 +93,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
     }
+    
     
     func drawPath(){
         let currentUserLocation = AkronMap.userLocation.coordinate
@@ -176,25 +179,55 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
     func populateBuildings(){
         // read from plist
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        //let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         
-        let url = URL(fileURLWithPath: paths[0]).appendingPathComponent("buildings.plist")
+        //let url = URL(fileURLWithPath: paths[0]).appendingPathComponent("buildings.plist")
+        let url = Bundle.main.url(forResource: "buildings", withExtension: "plist")
         
         print("FILE HERE PLIST \(url)")
         
-        guard let buildingData = NSArray(contentsOf: url) else {
+        guard let buildingData: NSArray = NSArray(contentsOf: url!) else {
             print("ERROR: reading plist from \(url)")
             return
         }
+        
+        //print(buildingData)
+        
+        //var buildingsArray: [NSDictionary] = []
+        
         for building in buildingData {
-            let temp = building as! NSDictionary
+            
+            let buildingItem = building as! NSDictionary
+
+            guard let buildingName: String = buildingItem["Name"] as? String else{
+                print("Invalid building name")
+                return
+            }
+            guard let buildingLatitude: Double = buildingItem["Latitude"] as? Double else{
+                print("Invalid building latitude")
+                return
+            }
+            guard let buildingLongitude: Double = buildingItem["Longitude"] as? Double else{
+                print("Invalid building longitude")
+                return
+            }
+            
+            let buildingDict: NSDictionary = ["Name" : buildingName, "Latitude" : buildingLatitude, "Longitude" : buildingLongitude]
+            buildings.append(buildingDict)
+            
+        }
+        
+        
+        for building in buildings {
         
             let tempBuilding = MKPointAnnotation()
-            tempBuilding.coordinate = CLLocationCoordinate2D(latitude: temp["Latitude"] as! Double, longitude: temp["Longitude"] as! Double)
-            tempBuilding.title = (temp["Name"] as! String)
+            tempBuilding.coordinate = CLLocationCoordinate2D(latitude: building["Latitude"] as! Double, longitude: building["Longitude"] as! Double)
+            tempBuilding.title = (building["Name"] as! String)
             
             AkronMap.addAnnotation(tempBuilding)
         }
+        
+        
         
         
     }
