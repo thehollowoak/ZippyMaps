@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Latitude</key>
+		<real>41.077725999999998</real>
+		<key>Longitude</key>
+		<real>-81.514077999999998</real>
+		<key>Name</key>
+		<string>Guzzetta Hall</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.077640000000002</real>
+		<key>Longitude</key>
+		<real>-81.510561999999993</real>
+		<key>Name</key>
+		<string>CAS</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.080874000000001</real>
+		<key>Longitude</key>
+		<real>-81.511259999999993</real>
+		<key>Name</key>
+		<string>APTC</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.076141</real>
+		<key>Longitude</key>
+		<real>-81.514099000000002</real>
+		<key>Name</key>
+		<string>ASEC</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.076276</real>
+		<key>Longitude</key>
+		<real>-81.513018000000002</real>
+		<key>Name</key>
+		<string>Ayer Hall</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.076962999999999</real>
+		<key>Longitude</key>
+		<real>-81.510136000000003</real>
+		<key>Name</key>
+		<string>Bierce Library</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.075924999999998</real>
+		<key>Longitude</key>
+		<real>-81.511142000000007</real>
+		<key>Name</key>
+		<string>Buchtel Hall</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.077266999999999</real>
+		<key>Longitude</key>
+		<real>-81.516684999999995</real>
+		<key>Name</key>
+		<string>BCCE</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.077587000000001</real>
+		<key>Longitude</key>
+		<real>-81.517660000000006</real>
+		<key>Name</key>
+		<string>CBA</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.075733</real>
+		<key>Longitude</key>
+		<real>-81.515507999999997</real>
+		<key>Name</key>
+		<string>Computer Center</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.076355999999997</real>
+		<key>Longitude</key>
+		<real>-81.512191000000001</real>
+		<key>Name</key>
+		<string>Crouse Hall</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.075637</real>
+		<key>Longitude</key>
+		<real>-81.515000000000001</real>
+		<key>Name</key>
+		<string>MGH</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.076197000000001</real>
+		<key>Longitude</key>
+		<real>-81.510696999999993</real>
+		<key>Name</key>
+		<string>Leigh Hall</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.076324</real>
+		<key>Longitude</key>
+		<real>-81.509986999999995</real>
+		<key>Name</key>
+		<string>Kolbe Hall</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.077328000000001</real>
+		<key>Longitude</key>
+		<real>-81.515620999999996</real>
+		<key>Name</key>
+		<string>LAW</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.077029000000003</real>
+		<key>Longitude</key>
+		<real>-81.508753999999996</real>
+		<key>Name</key>
+		<string>Olin Hall</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.075904999999999</real>
+		<key>Longitude</key>
+		<real>-81.508711000000005</real>
+		<key>Name</key>
+		<string>JAR</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.075023000000002</real>
+		<key>Longitude</key>
+		<real>-81.513636000000005</real>
+		<key>Name</key>
+		<string>SHN</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.074432999999999</real>
+		<key>Longitude</key>
+		<real>-81.513979000000006</real>
+		<key>Name</key>
+		<string>SHS</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.078574000000003</real>
+		<key>Longitude</key>
+		<real>-81.511747</real>
+		<key>Name</key>
+		<string>Simmons Hall</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.075629999999997</real>
+		<key>Longitude</key>
+		<real>-81.512370000000004</real>
+		<key>Name</key>
+		<string>Student Union</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.076956000000003</real>
+		<key>Longitude</key>
+		<real>-81.515845999999996</real>
+		<key>Name</key>
+		<string>West Hall</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.076172</real>
+		<key>Longitude</key>
+		<real>-81.514557999999994</real>
+		<key>Name</key>
+		<string>Whitby Hall</string>
+	</dict>
+	<dict>
+		<key>Latitude</key>
+		<real>41.076203999999997</real>
+		<key>Longitude</key>
+		<real>-81.511596999999995</real>
+		<key>Name</key>
+		<string>Zook Hall</string>
+	</dict>
+</array>
+</plist>
