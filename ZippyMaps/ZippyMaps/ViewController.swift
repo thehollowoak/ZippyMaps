@@ -33,7 +33,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print("Location authorization error")
         }
         //build plist
-        buildPList();
+        //buildPList();
         
         if(CLLocationManager.headingAvailable()){
             print("Heading available")
@@ -176,8 +176,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
     func populateBuildings(){
         // read from plist
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let url = URL(fileURLWithPath: paths[0]).appendingPathComponent("buildings.plist")
+        //let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let url = URL(fileURLWithPath: "/Users/rjt31/Desktop/buildings.plist")
         
         guard let buildingData = NSArray(contentsOf: url) else {
             print("ERROR: reading plist from \(url)")
@@ -191,6 +191,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             tempBuilding.title = (temp["Name"] as! String)
             
             AkronMap.addAnnotation(tempBuilding)
+            print("HERE: \(tempBuilding.title)")
         }
         
         
@@ -292,7 +293,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
     }
-    
+    /*
     func buildPList() {
         
         //var newBuilding: [NSDictionary] = []
@@ -359,7 +360,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
     }
-
+*/
     
     //Need to actually draw the line.
     //Requires view Controller to be a delegate
