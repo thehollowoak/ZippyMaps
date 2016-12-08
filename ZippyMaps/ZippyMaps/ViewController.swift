@@ -329,6 +329,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
+    /*
+    
     func buildPList() {
         
         //var newBuilding: [NSDictionary] = []
@@ -395,6 +397,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
     }
+ 
+    */
 
     
     //Need to actually draw the line.
@@ -457,7 +461,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             return
         }
         
-        dest.buildings = self.newBuilding
+        dest.buildings = self.buildings
         print("Sent building data")
     }
 
