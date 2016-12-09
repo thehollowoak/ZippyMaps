@@ -439,7 +439,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print("location. Latitude: \(location.coordinate.latitude) Longitude: \(location.coordinate.longitude)")
         }
         */
-        print("didUpdateLocations")
+        //print("didUpdateLocations")
         return
     }
     

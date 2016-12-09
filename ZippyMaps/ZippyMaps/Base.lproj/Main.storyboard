@@ -212,7 +212,7 @@
                         <outlet property="buildingPicker" destination="yr2-xj-s9I" id="xsC-kt-68R"/>
                         <outlet property="cancelButton" destination="Z0c-dS-SbK" id="G6D-Ht-Ypq"/>
                         <outlet property="classScheduleTableView" destination="1dP-HW-qmg" id="IHu-QY-HIV"/>
-                        <outlet property="endTimePicker" destination="Qr3-G2-G9m" id="1ng-hF-UrC"/>
+                        <outlet property="endTimePicker" destination="Qr3-G2-G9m" id="My9-Ow-HIc"/>
                         <outlet property="removeButton" destination="1Me-yj-eBv" id="TYg-V6-t8a"/>
                         <outlet property="selectRouteButton" destination="7pF-Fx-DSb" id="Kaw-1b-C4N"/>
                         <outlet property="startTimePicker" destination="dfF-zX-x4I" id="R5f-Xp-Ted"/>

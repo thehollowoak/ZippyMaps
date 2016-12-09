@@ -150,6 +150,18 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
             return cell
         }
         cell.classNameLabel.text = buildingName
+        
+        let startDOWTLabel = DateFormatter()
+        startDOWTLabel.setLocalizedDateFormatFromTemplate("EEE hh:mm")
+        let tempStartDate = Date(timeIntervalSince1970: cell_class.startTime.timeIntervalSince1970)
+        cell.startTimeLabel.text = startDOWTLabel.string(from: tempStartDate)
+        print("startTimeLabel: \(startDOWTLabel.string(from: tempStartDate))")
+        
+        let endDOWTLabel = DateFormatter()
+        endDOWTLabel.setLocalizedDateFormatFromTemplate("EEE hh:MM")
+        let tempEndDate = Date(timeIntervalSince1970: cell_class.endTime.timeIntervalSince1970)
+        cell.endTimeLabel.text = endDOWTLabel.string(from: tempEndDate)
+        
         return cell
     }
     
@@ -189,18 +201,18 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
         
         let selectedIndex = buildingPicker.selectedRow(inComponent: 0)
         let startTime = startTimePicker.date
-        let endTime = startTimePicker.date
-        var nsStartTime = NSDate(timeIntervalSince1970: startTime.timeIntervalSince1970)
-        var nsEndTime =  NSDate(timeIntervalSince1970: endTime.timeIntervalSince1970)
+        let endTime = endTimePicker.date
+        let nsStartTime = NSDate(timeIntervalSince1970: startTime.timeIntervalSince1970)
+        let nsEndTime =  NSDate(timeIntervalSince1970: endTime.timeIntervalSince1970)
 
-        
+        print("Start: \(startTime.timeIntervalSince1970)")
+        print("End: \(endTime.timeIntervalSince1970)")
         //Sanity check function if bad message and break
-        if(startTime.timeIntervalSince1970 > endTime.timeIntervalSince1970){
+        if(startTime.timeIntervalSince1970 >= endTime.timeIntervalSince1970){
             //swap
             print("Start time is greater than end time")
-            let temp = nsStartTime
-            nsStartTime = nsEndTime
-            nsEndTime = temp
+            startTimePicker.setDate(endTime, animated: true)
+            endTimePicker.setDate(startTime, animated: true)
             
             return
         }
