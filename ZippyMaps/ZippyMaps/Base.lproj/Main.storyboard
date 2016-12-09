@@ -16,10 +16,10 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WJM-PP-d1N">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WJM-PP-d1N">
                                 <frame key="frameInset" width="1000" height="1000"/>
                             </mapView>
                         </subviews>
@@ -57,7 +57,7 @@
                         <viewControllerLayoutGuide type="bottom" id="XiW-eo-I91"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dD9-Ev-7XC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vv3-YQ-aNN">
@@ -91,10 +91,10 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="46" id="Nqw-BW-n2Q" customClass="ClassScheduleViewCellTableViewCell" customModule="ZippyMaps" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="365" height="46"/>
+                                                <rect key="frame" x="0.0" y="28" width="310" height="46"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nqw-BW-n2Q" id="p5A-hl-jfL">
-                                                    <frame key="frameInset" width="365" height="45"/>
+                                                    <frame key="frameInset" width="310" height="45"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Building" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4N-Xt-FrT">
@@ -227,6 +227,7 @@
                                     <constraint firstItem="vcR-sI-fwG" firstAttribute="top" secondItem="1dP-HW-qmg" secondAttribute="bottom" constant="5" id="qgY-fL-ytU"/>
                                     <constraint firstItem="yr2-xj-s9I" firstAttribute="trailing" secondItem="dfF-zX-x4I" secondAttribute="trailing" id="rF1-fY-AAT"/>
                                     <constraint firstItem="Qr3-G2-G9m" firstAttribute="top" secondItem="u6V-hG-Lpv" secondAttribute="bottom" constant="5" id="sNn-Sp-Wov"/>
+                                    <constraint firstItem="7pF-Fx-DSb" firstAttribute="top" secondItem="Z0c-dS-SbK" secondAttribute="bottom" constant="5" id="uXI-bH-84D"/>
                                     <constraint firstItem="dfF-zX-x4I" firstAttribute="trailing" secondItem="Qr3-G2-G9m" secondAttribute="trailing" id="ugB-tl-fMT"/>
                                     <constraint firstAttribute="trailing" secondItem="1Me-yj-eBv" secondAttribute="trailing" constant="5" id="uz6-uJ-3Ow"/>
                                     <constraint firstItem="yr2-xj-s9I" firstAttribute="top" secondItem="vcR-sI-fwG" secondAttribute="bottom" constant="5" id="yhG-fx-WTH"/>
