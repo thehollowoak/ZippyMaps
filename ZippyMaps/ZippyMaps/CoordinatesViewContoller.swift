@@ -42,6 +42,7 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
         openSchedulePlist()
         //loadSampleClasses()
         print("Length of classes: \(classes.count)")
+        print("Secondary view controller buildings: \(buildings)")
         
     }
     
