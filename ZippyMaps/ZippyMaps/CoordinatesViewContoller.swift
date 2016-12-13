@@ -149,18 +149,19 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
             cell.classNameLabel.text = "INVALID"
             return cell
         }
-        cell.classNameLabel.text = buildingName
+        //cell.classNameLabel.text = buildingName
         
         let startDOWTLabel = DateFormatter()
         startDOWTLabel.setLocalizedDateFormatFromTemplate("EEE hh:mm")
         let tempStartDate = Date(timeIntervalSince1970: cell_class.startTime.timeIntervalSince1970)
-        cell.startTimeLabel.text = startDOWTLabel.string(from: tempStartDate)
+        //cell.startTimeLabel.text = startDOWTLabel.string(from: tempStartDate)
         print("startTimeLabel: \(startDOWTLabel.string(from: tempStartDate))")
         
         let endDOWTLabel = DateFormatter()
-        endDOWTLabel.setLocalizedDateFormatFromTemplate("EEE hh:MM")
+        endDOWTLabel.setLocalizedDateFormatFromTemplate("EEE hh:mm")
         let tempEndDate = Date(timeIntervalSince1970: cell_class.endTime.timeIntervalSince1970)
-        cell.endTimeLabel.text = endDOWTLabel.string(from: tempEndDate)
+        //cell.endTimeLabel.text = endDOWTLabel.string(from: tempEndDate)
+        cell.classNameLabel.text = buildingName + " " + startDOWTLabel.string(from: tempStartDate) + " " + endDOWTLabel.string(from: tempEndDate)
         
         return cell
     }
