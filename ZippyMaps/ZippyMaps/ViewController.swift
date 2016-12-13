@@ -16,6 +16,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     //UA's GPS coords 41.075931, -81.511134
     @IBOutlet weak var AkronMap: MKMapView!
     var classRoute: MKRoute!
+    var addedRoute: Bool = false
     var locations: CLLocationManager = CLLocationManager()
     var counter = 1
     
@@ -33,9 +34,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if(locationAuthorization == CLAuthorizationStatus.denied){
             print("Location authorization error")
         }
-        //build plist
-        //buildPList();
-        
+
         if(CLLocationManager.headingAvailable()){
             print("Heading available")
         }else{
@@ -65,20 +64,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let areaRegion: CLLocationDistance = 1000
         let defaultRegion = MKCoordinateRegionMakeWithDistance(defaultLocation, areaRegion, areaRegion)
         AkronMap.setRegion(defaultRegion, animated: false)
-        //print("HERE")
-        //print(AkronMap.region)
+
         AkronMap.mapType = MKMapType.hybrid
-        //AkronMap.delegate = self
+
         populateBuildings()
         print("IN PRIMARY VIEW CONTROLLER")
         
-        //Draw example path
-        //examplePath()
- 
-
-        //let path = Bundle.main.url(forResource: "buildings", withExtension: "plist")
-        //print("THE BUILDINGS FILE: \(path)")
-        //Get user location:
         let currentUserLocation = AkronMap.userLocation.coordinate
         print("User at: \(currentUserLocation.latitude), \(currentUserLocation.longitude)")
 
@@ -235,16 +226,21 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func examplePath(){
         //Zook Hall
         let gpsLocationStart: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.077084, longitude: -81.51142)
-        let startPlacemark: MKPlacemark = MKPlacemark(coordinate: gpsLocationStart)
-        let startLocation: MKMapItem = MKMapItem(placemark: startPlacemark)
+
         
         //Bierce
         let gpsLocationEnd: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.511142, longitude: -81.51142)
         
-        //White house
-        //38.897685, -77.036530
-        //let gpsLocationEnd: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 38.897685, longitude: -77.036530)
-        let endPlacemark: MKPlacemark = MKPlacemark(coordinate: gpsLocationEnd)
+        drawRouteOnMap(gpsLocationStart, gpsLocationEnd)
+        
+        
+    }
+    
+    func drawRouteOnMap(_ start: CLLocationCoordinate2D, _ end: CLLocationCoordinate2D){
+        let startPlacemark: MKPlacemark = MKPlacemark(coordinate: start)
+        let startLocation: MKMapItem = MKMapItem(placemark: startPlacemark)
+
+        let endPlacemark: MKPlacemark = MKPlacemark(coordinate: end)
         let endLocation: MKMapItem = MKMapItem(placemark: endPlacemark)
         
         let directionsRequest: MKDirectionsRequest = MKDirectionsRequest()
@@ -259,10 +255,26 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             if error == nil {
                 print("VALID ROUTE")
-                let validRoute: MKRoute = response!.routes[0]
+                //let validRoute: MKRoute = response!.routes[0]
+                guard let validRoute: MKRoute = response?.routes[0] else {
+                    print("Route error")
+                    return
+                }
                 //self.AkronMap.add(validRoute.polyline, level: MKOverlayLevel.aboveRoads)
                 self.classRoute = validRoute
+                if(self.addedRoute){
+                    self.AkronMap.remove(self.classRoute.polyline)
+                    
+                    //remove all overlays before adding new one
+                    for overlay in self.AkronMap.overlays {
+                        self.AkronMap.remove(overlay)
+                    }
+                    //print("Removed polyline")
+                    self.addedRoute = false
+                    //print("Overlays : \(self.AkronMap.overlays)")
+                }
                 self.AkronMap.add(self.classRoute.polyline, level: MKOverlayLevel.aboveRoads)
+                self.addedRoute = true
                 //self.AkronMap.addOverlays(validRoute.polyline.)
                 //let rect = validRoute.polyline.boundingMapRect
                 //self.AkronMap.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
@@ -271,11 +283,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }else{
                 print("INVALID ROUTE")
             }
-        
+            
         })
-        
-        
-        
     }
     
     func degreesToRadians(_ degrees: Double) -> Double{
@@ -288,29 +297,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func angle(_ position: CLLocationCoordinate2D, _ end: CLLocationCoordinate2D) -> Double {
         
-        /*
-        let latitude_radians_1:Double = degreesToRadians(position.latitude)
-        //print(latitude_radians_1)
-        let longitude_radians_1:Double = degreesToRadians(position.longitude)
-        //print(longitude_radians_1)
-        let latitude_radians_2:Double = degreesToRadians(end.latitude)
-        //print(latitude_radians_2)
-        let longitude_radians_2:Double = degreesToRadians(end.longitude)
-        //print(longitude_radians_2)
-        
-        let delta_longitude = longitude_radians_2 - longitude_radians_1
-        
-        let x = cos(latitude_radians_2)*sin(delta_longitude)
-        let y = cos(latitude_radians_1)*sin(latitude_radians_2) - cos(latitude_radians_2)*cos(delta_longitude)
-        
-        let bearingRadians: Double = atan2(x, y)
-        
-        var bearingDegrees = radiansToDegress(bearingRadians)
-        if(bearingDegrees < 0.0){
-            bearingDegrees = bearingDegrees + 360.0
-        }
-        return bearingDegrees
-        */
         let fLat = degreesToRadians(position.latitude)
         let fLng = degreesToRadians(position.longitude)
         let tLat = degreesToRadians(end.latitude)
@@ -329,77 +315,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
-    /*
-    
-    func buildPList() {
-        
-        //var newBuilding: [NSDictionary] = []
-        
-        var building: NSDictionary = [ "Name" : "Guzzetta Hall", "Latitude" : 41.077726, "Longitude" : -81.514078]
-        newBuilding.append(building)
-        building = [ "Name" : "CAS", "Latitude" : 41.077640, "Longitude" : -81.510562]
-        newBuilding.append(building)
-        building = [ "Name" : "APTC", "Latitude" : 41.080874, "Longitude" : -81.511260]
-        newBuilding.append(building)
-        building = [ "Name" : "ASEC", "Latitude" : 41.076141, "Longitude" : -81.514099]
-        newBuilding.append(building)
-        building = [ "Name" : "Ayer Hall", "Latitude" : 41.076276, "Longitude" : -81.513018]
-        newBuilding.append(building)
-        building = [ "Name" : "Bierce Library", "Latitude" : 41.076963, "Longitude" : -81.510136]
-        newBuilding.append(building)
-        building = [ "Name" : "Buchtel Hall", "Latitude" : 41.075925, "Longitude" : -81.511142]
-        newBuilding.append(building)
-        building = [ "Name" : "BCCE", "Latitude" : 41.077267, "Longitude" : -81.516685]
-        newBuilding.append(building)
-        building = [ "Name" : "CBA", "Latitude" : 41.077587, "Longitude" : -81.517660]
-        newBuilding.append(building)
-        building = [ "Name" : "Computer Center", "Latitude" : 41.075733, "Longitude" : -81.515508]
-        newBuilding.append(building)
-        building = [ "Name" : "Crouse Hall", "Latitude" : 41.076356, "Longitude" : -81.512191]
-        newBuilding.append(building)
-        building = [ "Name" : "MGH", "Latitude" : 41.075637, "Longitude" : -81.515000]
-        newBuilding.append(building)
-        building = [ "Name" : "Leigh Hall", "Latitude" : 41.076197, "Longitude" : -81.510697]
-        newBuilding.append(building)
-        building = [ "Name" : "Kolbe Hall", "Latitude" : 41.076324, "Longitude" : -81.509987]
-        newBuilding.append(building)
-        building = [ "Name" : "LAW", "Latitude" : 41.077328, "Longitude" : -81.515621]
-        newBuilding.append(building)
-        building = [ "Name" : "Olin Hall", "Latitude" : 41.077029, "Longitude" : -81.508754]
-        newBuilding.append(building)
-        building = [ "Name" : "JAR", "Latitude" : 41.075905, "Longitude" : -81.508711]
-        newBuilding.append(building)
-        building = [ "Name" : "SHN", "Latitude" : 41.075023, "Longitude" : -81.513636]
-        newBuilding.append(building)
-        building = [ "Name" : "SHS", "Latitude" : 41.074433, "Longitude" : -81.513979]
-        newBuilding.append(building)
-        building = [ "Name" : "Simmons Hall", "Latitude" : 41.078574, "Longitude" : -81.511747]
-        newBuilding.append(building)
-        building = [ "Name" : "Student Union", "Latitude" : 41.075630, "Longitude" : -81.512370]
-        newBuilding.append(building)
-        building = [ "Name" : "West Hall", "Latitude" : 41.076956, "Longitude" : -81.515846]
-        newBuilding.append(building)
-        building = [ "Name" : "Whitby Hall", "Latitude" : 41.076172, "Longitude" : -81.514558]
-        newBuilding.append(building)
-        building = [ "Name" : "Zook Hall", "Latitude" : 41.076204, "Longitude" : -81.511597]
-        newBuilding.append(building)
-        
-        // write plist as local document
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let url = URL(fileURLWithPath: paths[0]).appendingPathComponent("buildings.plist")
-        print(paths[0])
-        
-        DispatchQueue(label:"edu.uakron.cs.ios.ZippyMaps").async {
-            let testArray = self.newBuilding as NSArray
-            if !testArray.write(to: url, atomically: true) {
-                print("Error writing plist to \(url)")
-            }
-        }
-        
-    }
- 
-    */
-
     
     //Need to actually draw the line.
     //Requires view Controller to be a delegate
@@ -440,6 +355,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         */
         //print("didUpdateLocations")
+        
+        //
+        let userLocation = AkronMap.userLocation.coordinate
+        let building = CLLocationCoordinate2D(latitude: 41.076041, longitude: -81.511142)
+
+        drawRouteOnMap(userLocation, building)
+        
         return
     }
     

@@ -161,6 +161,8 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
         endDOWTLabel.setLocalizedDateFormatFromTemplate("EEE hh:mm")
         let tempEndDate = Date(timeIntervalSince1970: cell_class.endTime.timeIntervalSince1970)
         //cell.endTimeLabel.text = endDOWTLabel.string(from: tempEndDate)
+        
+        //Temporary fixed label until multi-column implemented
         cell.classNameLabel.text = buildingName + " " + startDOWTLabel.string(from: tempStartDate) + " " + endDOWTLabel.string(from: tempEndDate)
         
         return cell
