@@ -201,6 +201,7 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
 
     //Buttons
     @IBAction func addButtonPressed(_ sender: AnyObject) {
+        print("Add pressed")
         
         let selectedIndex = buildingPicker.selectedRow(inComponent: 0)
         let startTime = startTimePicker.date
@@ -213,11 +214,42 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
         //Sanity check function if bad message and break
         if(startTime.timeIntervalSince1970 >= endTime.timeIntervalSince1970){
             //swap
-            print("Start time is greater than end time")
-            startTimePicker.setDate(endTime, animated: true)
-            endTimePicker.setDate(startTime, animated: true)
+            //print("Start time is greater than end time")
+            //startTimePicker.setDate(endTime, animated: true)
+            //endTimePicker.setDate(startTime, animated: true)
+            let alert = UIAlertController(title: "Alert", message: "End time occurs before start time.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             
             return
+        }
+        
+        //Check if will fit in class schedule
+        for existingClass in classes {
+            if(existingClass == classes[buildingIndex] && classTableRowSelected){
+                //A class being edited cannot conflict with it self so skip
+                print("Existing class: \(existingClass)")
+                //If the class is the one we are editing skip
+                print("Skipping")
+                continue
+            }
+            
+            let existingStartTime = existingClass.startTime.timeIntervalSince1970
+            let existingEndTime = existingClass.endTime.timeIntervalSince1970
+            if(startTime.timeIntervalSince1970 >= existingStartTime && startTime.timeIntervalSince1970 <= existingEndTime){
+                let alert = UIAlertController(title: "Alert", message: "Scheduled start time interval conflicts with an existing class.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            if(endTime.timeIntervalSince1970 >= existingStartTime && endTime.timeIntervalSince1970 <= existingEndTime){
+                let alert = UIAlertController(title: "Alert", message: "Scheduled end time interval conflicts with an existing class.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
         }
         
         if(classTableRowSelected){
@@ -248,6 +280,7 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
             let addClass: ClassSchedule = ClassSchedule(nsStartTime, nsEndTime, selectedIndex)
             classes.append(addClass)
             classScheduleTableView.reloadData()
+            print("Added: \(addClass)")
             
             
         }
