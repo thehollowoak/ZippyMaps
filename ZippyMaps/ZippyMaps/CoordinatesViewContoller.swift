@@ -49,6 +49,10 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
         
     }
     
+    func classSorter(_ c1: ClassSchedule, _ c2: ClassSchedule) -> Bool {
+        return c1.startTime.timeIntervalSince1970 < c2.startTime.timeIntervalSince1970
+    }
+    
     func loadSampleClasses() {
 
         let a = ClassSchedule(NSDate(timeIntervalSince1970: 1480554000), NSDate(timeIntervalSince1970: 1480557600), 0)
@@ -267,7 +271,8 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
             //self.classes.remove(at: selectedIndex)
             //let addClass: ClassSchedule = ClassSchedule(nsStartTime, nsEndTime, selectedIndex)
             //self.classes.append(addClass)
-            classScheduleTableView.reloadData()
+            
+            //classScheduleTableView.reloadData()
         }else{
             //Add behavior
             
@@ -279,11 +284,15 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
             //Needs to be var as we'll edit it later
             let addClass: ClassSchedule = ClassSchedule(nsStartTime, nsEndTime, selectedIndex)
             classes.append(addClass)
-            classScheduleTableView.reloadData()
-            print("Added: \(addClass)")
+            
+            //classScheduleTableView.reloadData()
+            
+            //print("Added: \(addClass)")
             
             
         }
+        self.classes.sort(by: classSorter)
+        classScheduleTableView.reloadData()
         
         //Reset fields to reasonable values
         //Save plist
