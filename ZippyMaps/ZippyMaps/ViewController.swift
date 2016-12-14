@@ -53,6 +53,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
         populateBuildings()
         print("buildings: \(buildings)")
+        
+        openSchedulePlist()
+        /*
         openSchedulePlist()
         print("Loaded classes: \(classes)")
         classes.sort(by: classSorter)
@@ -84,6 +87,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 break
             }
         }
+        */
         
         
         
@@ -126,7 +130,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
-    
+    /*
     func drawPath(){
         let currentUserLocation = AkronMap.userLocation.coordinate
         
@@ -175,6 +179,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
     }
+    */
     
     func testTimerFunc(){
         print("The count is \(counter)")
@@ -411,11 +416,56 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
         drawRouteOnMap(userLocation, building)
         */
+        validTarget = false
+        //openSchedulePlist()
+        //print("Loaded classes: \(classes)")
+        //classes.sort(by: classSorter)
+        let currentTime = Date()
+        let actualTime = currentTime.timeIntervalSince1970
+        
+        for scheduleClass in classes {
+            if(scheduleClass.endTime.timeIntervalSince1970 > actualTime){
+                
+                
+                //Get the index
+                let index = scheduleClass.rowIndex
+                print("The next class index is: \(index)")
+                
+                //Parse the coordinates
+                guard let targetLongitude = buildings[index].value(forKey: "Longitude") as? Double else {
+                    print("Cannot get longitude")
+                    break
+                }
+                guard let targetLatitude = buildings[index].value(forKey: "Latitude") as? Double else {
+                    print("Cannot get latitude")
+                    break
+                }
+                targetBuildingCoordinate = CLLocationCoordinate2D(latitude: targetLatitude, longitude: targetLongitude)
+                
+                
+                //Draw the route
+                validTarget = true
+                break
+            }
+        }
+
+        
         if(validTarget){
             let userLocation = AkronMap.userLocation.coordinate
             drawRouteOnMap(userLocation, targetBuildingCoordinate)
         }else{
             print("NO TARGET")
+            if(self.addedRoute){
+                self.AkronMap.remove(self.classRoute.polyline)
+                
+                //remove all overlays before adding new one
+                for overlay in self.AkronMap.overlays {
+                    self.AkronMap.remove(overlay)
+                }
+                //print("Removed polyline")
+                self.addedRoute = false
+                //print("Overlays : \(self.AkronMap.overlays)")
+            }
         }
         
         return
