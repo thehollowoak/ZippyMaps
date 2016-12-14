@@ -19,10 +19,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var addedRoute: Bool = false
     var locations: CLLocationManager = CLLocationManager()
     var counter = 1
+    var timerFired: Bool = false
     
     var newBuilding: [NSDictionary] = []
     var targetBuilding: NSDictionary = [:]
     var buildings: [NSDictionary] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +43,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print("Heading not available")
         }
         
-        //var testTimer: Timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.testTimerFunc), userInfo: nil, repeats: true)
+        var testTimer: Timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.testTimerFunc), userInfo: nil, repeats: true)
+        
         
         
         populateBuildings()
