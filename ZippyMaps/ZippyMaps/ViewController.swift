@@ -20,10 +20,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var locations: CLLocationManager = CLLocationManager()
     var counter = 1
     var timerFired: Bool = false
+    var validTarget: Bool = false
     
     var newBuilding: [NSDictionary] = []
     var targetBuilding: NSDictionary = [:]
     var buildings: [NSDictionary] = []
+    var classes: [ClassSchedule] = [ClassSchedule]()
+    var targetBuildingCoordinate: CLLocationCoordinate2D!
+    
+    
+    //var currentTime: Date!
     
     
     override func viewDidLoad() {
@@ -43,11 +49,43 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print("Heading not available")
         }
         
-        var testTimer: Timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.testTimerFunc), userInfo: nil, repeats: true)
-        
-        
-        
+        //var testTimer: Timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.testTimerFunc), userInfo: nil, repeats: true)
+
         populateBuildings()
+        print("buildings: \(buildings)")
+        openSchedulePlist()
+        print("Loaded classes: \(classes)")
+        classes.sort(by: classSorter)
+        let currentTime = Date()
+        let actualTime = currentTime.timeIntervalSince1970
+        
+        for scheduleClass in classes {
+            if(scheduleClass.startTime.timeIntervalSince1970 > actualTime){
+
+                
+                //Get the index
+                let index = scheduleClass.rowIndex
+                print("The next class index is: \(index)")
+
+                //Parse the coordinates
+                guard let targetLongitude = buildings[index].value(forKey: "Longitude") as? Double else {
+                    print("Cannot get longitude")
+                    break
+                }
+                guard let targetLatitude = buildings[index].value(forKey: "Latitude") as? Double else {
+                    print("Cannot get latitude")
+                    break
+                }
+                targetBuildingCoordinate = CLLocationCoordinate2D(latitude: targetLatitude, longitude: targetLongitude)
+                
+                
+                //Draw the route
+                validTarget = true
+                break
+            }
+        }
+        
+        
         
         //CLLocation is required to track the user
         //locations.desiredAccuracy
@@ -70,7 +108,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
         AkronMap.mapType = MKMapType.hybrid
 
-        populateBuildings()
+
         print("IN PRIMARY VIEW CONTROLLER")
         
         let currentUserLocation = AkronMap.userLocation.coordinate
@@ -98,7 +136,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let startLocation: MKMapItem = MKMapItem(placemark: startPlacemark)
         
         //Destination
-        let gpsLocationEnd: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: targetBuilding.value(forKey: "Latitude") as! Double , longitude: targetBuilding.value(forKey: "Longitude") as! Double)
+        //let gpsLocationEnd: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: targetBuilding.value(forKey: "Latitude") as! Double , longitude: targetBuilding.value(forKey: "Longitude") as! Double)
+        guard let gpsLocationEnd = targetBuildingCoordinate else {
+            print("CANNOT ASSIGN END")
+            return
+        }
         
         print("TEST TEST TEST\(gpsLocationStart.latitude) + \(gpsLocationEnd.latitude)")
         let endPlacemark: MKPlacemark = MKPlacemark(coordinate: gpsLocationEnd)
@@ -338,13 +380,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let userCoordinate: CLLocationCoordinate2D = userLocation.coordinate
         print("Location: Latitude: \(userCoordinate.latitude) Longitude: \(userCoordinate.longitude)")
         
-        
+        /*
         if (targetBuilding.count == 0) {
             print("No target")
         }else{
             print("Given target, drawing path")
             drawPath()
         }
+        */
         
         return
     }
@@ -360,10 +403,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //print("didUpdateLocations")
         
         //
+        
+        
+        /*
         let userLocation = AkronMap.userLocation.coordinate
         let building = CLLocationCoordinate2D(latitude: 41.076041, longitude: -81.511142)
 
         drawRouteOnMap(userLocation, building)
+        */
+        if(validTarget){
+            let userLocation = AkronMap.userLocation.coordinate
+            drawRouteOnMap(userLocation, targetBuildingCoordinate)
+        }else{
+            print("NO TARGET")
+        }
         
         return
     }
@@ -390,5 +443,48 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("Sent building data")
     }
 
+    func openSchedulePlist(){
+        print("READING")
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let url = URL(fileURLWithPath: paths[0]).appendingPathComponent("schedule.plist")
+        
+        guard let schedule = NSArray(contentsOf: url) else {
+            print("ERROR: reading plist from \(url)")
+            return
+        }
+        print("URL HERE: \(url)")
+        let tempSchedule: [NSDictionary] = schedule as! [NSDictionary]
+        //Blank classes just in case
+        classes = []
+        for scheduleItem in tempSchedule {
+            guard let startTime: Double = scheduleItem["start"] as? Double else{
+                print("Invalid start time")
+                return
+            }
+            guard let endTime: Double = scheduleItem["end"] as? Double else{
+                print("Invalid end time")
+                return
+            }
+            guard let scheduleBuildingIndex: Int = scheduleItem["id"] as? Int else{
+                print("Invalid building index")
+                return
+            }
+            
+            let sDate: NSDate = NSDate(timeIntervalSince1970: startTime)
+            let eDate: NSDate = NSDate(timeIntervalSince1970: endTime)
+            
+            
+            let addScheduleItem: ClassSchedule = ClassSchedule(sDate, eDate, scheduleBuildingIndex)
+            
+            print("Schedule item: \(addScheduleItem)")
+            
+            
+            classes.append(addScheduleItem)
+        }
+    }
+    
+    func classSorter(_ c1: ClassSchedule, _ c2: ClassSchedule) -> Bool {
+        return c1.startTime.timeIntervalSince1970 < c2.startTime.timeIntervalSince1970
+    }
 }
 
