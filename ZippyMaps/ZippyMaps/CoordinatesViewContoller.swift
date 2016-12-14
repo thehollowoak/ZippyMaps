@@ -260,19 +260,11 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
             //Update behavior
             classTableRowSelected = false
             addButton.setTitle("Add", for: .normal)
-            
-            //FIXME
-            //classScheduleTableView.deselectRow(at: selectedRow, animated: true)
-            print("selectedIndex: \(selectedIndex)")
-            print("buildingIndex: \(buildingIndex)")
+
             classes[buildingIndex].rowIndex = selectedIndex
             classes[buildingIndex].startTime = nsStartTime
             classes[buildingIndex].endTime = nsEndTime
-            //self.classes.remove(at: selectedIndex)
-            //let addClass: ClassSchedule = ClassSchedule(nsStartTime, nsEndTime, selectedIndex)
-            //self.classes.append(addClass)
-            
-            //classScheduleTableView.reloadData()
+
         }else{
             //Add behavior
             
@@ -284,11 +276,6 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
             //Needs to be var as we'll edit it later
             let addClass: ClassSchedule = ClassSchedule(nsStartTime, nsEndTime, selectedIndex)
             classes.append(addClass)
-            
-            //classScheduleTableView.reloadData()
-            
-            //print("Added: \(addClass)")
-            
             
         }
         self.classes.sort(by: classSorter)
