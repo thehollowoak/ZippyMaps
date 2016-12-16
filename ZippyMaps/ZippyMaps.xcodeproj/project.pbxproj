@@ -17,20 +17,9 @@
 		427462891E01DAF50042EF96 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427462881E01DAF50042EF96 /* NotificationCenter.framework */; };
 		4274628C1E01DAF50042EF96 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4274628B1E01DAF50042EF96 /* TodayViewController.swift */; };
 		4274628F1E01DAF50042EF96 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4274628D1E01DAF50042EF96 /* MainInterface.storyboard */; };
-		427462931E01DAF50042EF96 /* ZippyMapsTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 427462871E01DAF50042EF96 /* ZippyMapsTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4274629A1E01E18B0042EF96 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427462991E01E18B0042EF96 /* MapKit.framework */; };
 		42B959CE1DFA134500E0C0AD /* buildings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 42B959CD1DFA134500E0C0AD /* buildings.plist */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		427462911E01DAF50042EF96 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 425A15491DDB915F00865DE9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 427462861E01DAF50042EF96;
-			remoteInfo = ZippyMapsTodayExtension;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		427462971E01DAF50042EF96 /* Embed App Extensions */ = {
@@ -39,7 +28,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				427462931E01DAF50042EF96 /* ZippyMapsTodayExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,7 +146,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				427462921E01DAF50042EF96 /* PBXTargetDependency */,
 			);
 			name = ZippyMaps;
 			productName = ZippyMaps;
@@ -194,7 +181,6 @@
 				TargetAttributes = {
 					425A15501DDB915F00865DE9 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = LTL5G688AP;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -279,14 +265,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		427462921E01DAF50042EF96 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 427462861E01DAF50042EF96 /* ZippyMapsTodayExtension */;
-			targetProxy = 427462911E01DAF50042EF96 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		425A15581DDB915F00865DE9 /* Main.storyboard */ = {
@@ -407,7 +385,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ZippyMaps/ZippyMaps.entitlements;
-				DEVELOPMENT_TEAM = LTL5G688AP;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ZippyMaps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.uakron.cs.mak138.ZippyMaps;
@@ -422,7 +400,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ZippyMaps/ZippyMaps.entitlements;
-				DEVELOPMENT_TEAM = LTL5G688AP;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ZippyMaps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.uakron.cs.mak138.ZippyMaps;
@@ -487,6 +465,7 @@
 				427462951E01DAF50042EF96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
