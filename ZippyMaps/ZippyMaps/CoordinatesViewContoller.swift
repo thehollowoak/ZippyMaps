@@ -50,7 +50,22 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func classSorter(_ c1: ClassSchedule, _ c2: ClassSchedule) -> Bool {
-        return c1.startTime.timeIntervalSince1970 < c2.startTime.timeIntervalSince1970
+        //return c1.startTime.timeIntervalSince1970 < c2.startTime.timeIntervalSince1970
+        
+        var c1Start: Int = Int(c1.startTime.timeIntervalSince1970)
+        var c2Start: Int = Int(c2.startTime.timeIntervalSince1970)
+        
+        //1970 DOW correction
+        //345600
+        c1Start -= 259200
+        c2Start -= 259200
+        
+        c1Start %= 604800
+        c2Start %= 604800
+        
+        print("c1: \(c1.rowIndex) c2: \(c2.rowIndex)")
+        print("c1: \(c1Start) c2: \(c2Start)")
+        return c1Start < c2Start
     }
     
     func loadSampleClasses() {
@@ -228,6 +243,14 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
             return
         }
         
+        if((endTime.timeIntervalSince1970 - startTime.timeIntervalSince1970) >= 86400.0){
+            let alert = UIAlertController(title: "Alert", message: "Invalid class length.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
         //Check if will fit in class schedule
         for existingClass in classes {
             if(existingClass == classes[buildingIndex] && classTableRowSelected){
@@ -238,16 +261,18 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
                 continue
             }
             
-            let existingStartTime = existingClass.startTime.timeIntervalSince1970
-            let existingEndTime = existingClass.endTime.timeIntervalSince1970
-            if(startTime.timeIntervalSince1970 >= existingStartTime && startTime.timeIntervalSince1970 <= existingEndTime){
+            let existingStartTime = Int(existingClass.startTime.timeIntervalSince1970) % 604800
+            let existingEndTime = Int(existingClass.endTime.timeIntervalSince1970) % 604800
+            let intStartTime = Int(startTime.timeIntervalSince1970) % 604800
+            let intEndTime = Int(endTime.timeIntervalSince1970) % 604800
+            if(intStartTime >= existingStartTime && intStartTime <= existingEndTime){
                 let alert = UIAlertController(title: "Alert", message: "Scheduled start time interval conflicts with an existing class.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 return
             }
             
-            if(endTime.timeIntervalSince1970 >= existingStartTime && endTime.timeIntervalSince1970 <= existingEndTime){
+            if(intEndTime >= existingStartTime && intEndTime <= existingEndTime){
                 let alert = UIAlertController(title: "Alert", message: "Scheduled end time interval conflicts with an existing class.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
@@ -333,12 +358,17 @@ class CoordinatesViewContoller: UIViewController, UIPickerViewDelegate, UIPicker
             schedule.append(classTD)
         }
         
+        let sharedData = UserDefaults(suiteName: "group.edu.uakron.cs.mak138.ZippyMapsUserDefaults")
+        sharedData?.set(schedule, forKey: "schedule")        
+        
         DispatchQueue(label:"edu.uakron.cs.ios.ZippyMaps").async {
             let testArray = schedule as NSArray
             if !testArray.write(to: url, atomically: true) {
                 print("Error writing plist to \(url)")
             }
         }
+        
+        
     }
     
     func openSchedulePlist(){

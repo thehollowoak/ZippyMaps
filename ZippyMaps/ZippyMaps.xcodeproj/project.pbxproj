@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4231A9AC1E0429BA00F549C0 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427462881E01DAF50042EF96 /* NotificationCenter.framework */; };
+		4231A9AF1E0429BA00F549C0 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4231A9AE1E0429BA00F549C0 /* TodayViewController.swift */; };
+		4231A9B21E0429BA00F549C0 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4231A9B01E0429BA00F549C0 /* MainInterface.storyboard */; };
+		4231A9B61E0429BA00F549C0 /* ZippyMapsLocationTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4231A9AB1E0429BA00F549C0 /* ZippyMapsLocationTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4231A9BC1E04312D00F549C0 /* ClassSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4231A9BB1E04312D00F549C0 /* ClassSchedule.swift */; };
 		425878691DF0B8680062A4F2 /* ClassScheduleViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425878681DF0B8680062A4F2 /* ClassScheduleViewCellTableViewCell.swift */; };
 		4258786F1DF0CDA90062A4F2 /* ClassSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4258786E1DF0CDA90062A4F2 /* ClassSchedule.swift */; };
 		425A15551DDB915F00865DE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425A15541DDB915F00865DE9 /* AppDelegate.swift */; };
@@ -15,20 +20,19 @@
 		425A155C1DDB915F00865DE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 425A155B1DDB915F00865DE9 /* Assets.xcassets */; };
 		425A15691DDBA0FC00865DE9 /* CoordinatesViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425A15681DDBA0FC00865DE9 /* CoordinatesViewContoller.swift */; };
 		427462891E01DAF50042EF96 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427462881E01DAF50042EF96 /* NotificationCenter.framework */; };
-		4274628C1E01DAF50042EF96 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4274628B1E01DAF50042EF96 /* TodayViewController.swift */; };
-		4274628F1E01DAF50042EF96 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4274628D1E01DAF50042EF96 /* MainInterface.storyboard */; };
-		427462931E01DAF50042EF96 /* ZippyMapsTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 427462871E01DAF50042EF96 /* ZippyMapsTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4274629A1E01E18B0042EF96 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427462991E01E18B0042EF96 /* MapKit.framework */; };
 		42B959CE1DFA134500E0C0AD /* buildings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 42B959CD1DFA134500E0C0AD /* buildings.plist */; };
+		42BAF3261E0441BE008D8C10 /* Icon-App-40x40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42BAF3241E0441BE008D8C10 /* Icon-App-40x40@3x.png */; };
+		42BAF3271E0441BE008D8C10 /* Icon-App-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42BAF3251E0441BE008D8C10 /* Icon-App-60x60@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		427462911E01DAF50042EF96 /* PBXContainerItemProxy */ = {
+		4231A9B41E0429BA00F549C0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 425A15491DDB915F00865DE9 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 427462861E01DAF50042EF96;
-			remoteInfo = ZippyMapsTodayExtension;
+			remoteGlobalIDString = 4231A9AA1E0429BA00F549C0;
+			remoteInfo = ZippyMapsLocationTodayExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -39,7 +43,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				427462931E01DAF50042EF96 /* ZippyMapsTodayExtension.appex in Embed App Extensions */,
+				4231A9B61E0429BA00F549C0 /* ZippyMapsLocationTodayExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,6 +51,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4231A9AB1E0429BA00F549C0 /* ZippyMapsLocationTodayExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ZippyMapsLocationTodayExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4231A9AE1E0429BA00F549C0 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		4231A9B11E0429BA00F549C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		4231A9B31E0429BA00F549C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4231A9BA1E042BBA00F549C0 /* ZippyMapsLocationTodayExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZippyMapsLocationTodayExtension.entitlements; sourceTree = "<group>"; };
+		4231A9BB1E04312D00F549C0 /* ClassSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassSchedule.swift; sourceTree = "<group>"; };
 		425878681DF0B8680062A4F2 /* ClassScheduleViewCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassScheduleViewCellTableViewCell.swift; sourceTree = "<group>"; };
 		4258786E1DF0CDA90062A4F2 /* ClassSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassSchedule.swift; sourceTree = "<group>"; };
 		425A15511DDB915F00865DE9 /* ZippyMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZippyMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,16 +68,22 @@
 		425A15681DDBA0FC00865DE9 /* CoordinatesViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatesViewContoller.swift; sourceTree = "<group>"; };
 		427462871E01DAF50042EF96 /* ZippyMapsTodayExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ZippyMapsTodayExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		427462881E01DAF50042EF96 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		4274628B1E01DAF50042EF96 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		4274628E1E01DAF50042EF96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		427462901E01DAF50042EF96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		427462981E01DDBB0042EF96 /* ZippyMapsTodayExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZippyMapsTodayExtension.entitlements; sourceTree = "<group>"; };
 		427462991E01E18B0042EF96 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4274629B1E01E18F0042EF96 /* ZippyMaps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZippyMaps.entitlements; sourceTree = "<group>"; };
 		42B959CD1DFA134500E0C0AD /* buildings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = buildings.plist; sourceTree = "<group>"; };
+		42BAF3241E0441BE008D8C10 /* Icon-App-40x40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-40x40@3x.png"; path = "../../../../../../Volumes/NO NAME/Icon-App-40x40@3x.png"; sourceTree = "<group>"; };
+		42BAF3251E0441BE008D8C10 /* Icon-App-60x60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-60x60@3x.png"; path = "../../../../../../Volumes/NO NAME/Icon-App-60x60@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4231A9A81E0429BA00F549C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4231A9AC1E0429BA00F549C0 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		425A154E1DDB915F00865DE9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -87,11 +103,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4231A9AD1E0429BA00F549C0 /* ZippyMapsLocationTodayExtension */ = {
+			isa = PBXGroup;
+			children = (
+				4231A9BB1E04312D00F549C0 /* ClassSchedule.swift */,
+				4231A9BA1E042BBA00F549C0 /* ZippyMapsLocationTodayExtension.entitlements */,
+				4231A9AE1E0429BA00F549C0 /* TodayViewController.swift */,
+				4231A9B01E0429BA00F549C0 /* MainInterface.storyboard */,
+				4231A9B31E0429BA00F549C0 /* Info.plist */,
+			);
+			path = ZippyMapsLocationTodayExtension;
+			sourceTree = "<group>";
+		};
 		425A15481DDB915F00865DE9 = {
 			isa = PBXGroup;
 			children = (
 				425A15531DDB915F00865DE9 /* ZippyMaps */,
-				4274628A1E01DAF50042EF96 /* ZippyMapsTodayExtension */,
+				4231A9AD1E0429BA00F549C0 /* ZippyMapsLocationTodayExtension */,
 				425A15521DDB915F00865DE9 /* Products */,
 				4265BA651DDFAC910050AA51 /* Frameworks */,
 			);
@@ -102,6 +130,7 @@
 			children = (
 				425A15511DDB915F00865DE9 /* ZippyMaps.app */,
 				427462871E01DAF50042EF96 /* ZippyMapsTodayExtension.appex */,
+				4231A9AB1E0429BA00F549C0 /* ZippyMapsLocationTodayExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,6 +145,8 @@
 				425A15581DDB915F00865DE9 /* Main.storyboard */,
 				425A15681DDBA0FC00865DE9 /* CoordinatesViewContoller.swift */,
 				425A155B1DDB915F00865DE9 /* Assets.xcassets */,
+				42BAF3241E0441BE008D8C10 /* Icon-App-40x40@3x.png */,
+				42BAF3251E0441BE008D8C10 /* Icon-App-60x60@3x.png */,
 				425A15601DDB915F00865DE9 /* Info.plist */,
 				425878681DF0B8680062A4F2 /* ClassScheduleViewCellTableViewCell.swift */,
 				4258786E1DF0CDA90062A4F2 /* ClassSchedule.swift */,
@@ -132,20 +163,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4274628A1E01DAF50042EF96 /* ZippyMapsTodayExtension */ = {
-			isa = PBXGroup;
-			children = (
-				427462981E01DDBB0042EF96 /* ZippyMapsTodayExtension.entitlements */,
-				4274628B1E01DAF50042EF96 /* TodayViewController.swift */,
-				4274628D1E01DAF50042EF96 /* MainInterface.storyboard */,
-				427462901E01DAF50042EF96 /* Info.plist */,
-			);
-			path = ZippyMapsTodayExtension;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4231A9AA1E0429BA00F549C0 /* ZippyMapsLocationTodayExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4231A9B91E0429BA00F549C0 /* Build configuration list for PBXNativeTarget "ZippyMapsLocationTodayExtension" */;
+			buildPhases = (
+				4231A9A71E0429BA00F549C0 /* Sources */,
+				4231A9A81E0429BA00F549C0 /* Frameworks */,
+				4231A9A91E0429BA00F549C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZippyMapsLocationTodayExtension;
+			productName = ZippyMapsLocationTodayExtension;
+			productReference = 4231A9AB1E0429BA00F549C0 /* ZippyMapsLocationTodayExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		425A15501DDB915F00865DE9 /* ZippyMaps */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 425A15631DDB915F00865DE9 /* Build configuration list for PBXNativeTarget "ZippyMaps" */;
@@ -158,7 +195,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				427462921E01DAF50042EF96 /* PBXTargetDependency */,
+				4231A9B51E0429BA00F549C0 /* PBXTargetDependency */,
 			);
 			name = ZippyMaps;
 			productName = ZippyMaps;
@@ -188,10 +225,20 @@
 		425A15491DDB915F00865DE9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Kay,Maxwell";
 				TargetAttributes = {
+					4231A9AA1E0429BA00F549C0 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = LTL5G688AP;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					425A15501DDB915F00865DE9 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = LTL5G688AP;
@@ -232,18 +279,29 @@
 			targets = (
 				425A15501DDB915F00865DE9 /* ZippyMaps */,
 				427462861E01DAF50042EF96 /* ZippyMapsTodayExtension */,
+				4231A9AA1E0429BA00F549C0 /* ZippyMapsLocationTodayExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4231A9A91E0429BA00F549C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4231A9B21E0429BA00F549C0 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		425A154F1DDB915F00865DE9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				425A155C1DDB915F00865DE9 /* Assets.xcassets in Resources */,
+				42BAF3271E0441BE008D8C10 /* Icon-App-60x60@3x.png in Resources */,
 				42B959CE1DFA134500E0C0AD /* buildings.plist in Resources */,
 				425A155A1DDB915F00865DE9 /* Main.storyboard in Resources */,
+				42BAF3261E0441BE008D8C10 /* Icon-App-40x40@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,13 +309,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4274628F1E01DAF50042EF96 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4231A9A71E0429BA00F549C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4231A9AF1E0429BA00F549C0 /* TodayViewController.swift in Sources */,
+				4231A9BC1E04312D00F549C0 /* ClassSchedule.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		425A154D1DDB915F00865DE9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -274,21 +340,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4274628C1E01DAF50042EF96 /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		427462921E01DAF50042EF96 /* PBXTargetDependency */ = {
+		4231A9B51E0429BA00F549C0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 427462861E01DAF50042EF96 /* ZippyMapsTodayExtension */;
-			targetProxy = 427462911E01DAF50042EF96 /* PBXContainerItemProxy */;
+			target = 4231A9AA1E0429BA00F549C0 /* ZippyMapsLocationTodayExtension */;
+			targetProxy = 4231A9B41E0429BA00F549C0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4231A9B01E0429BA00F549C0 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4231A9B11E0429BA00F549C0 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		425A15581DDB915F00865DE9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,17 +370,37 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		4274628D1E01DAF50042EF96 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4274628E1E01DAF50042EF96 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4231A9B71E0429BA00F549C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ZippyMapsLocationTodayExtension/ZippyMapsLocationTodayExtension.entitlements;
+				DEVELOPMENT_TEAM = LTL5G688AP;
+				INFOPLIST_FILE = ZippyMapsLocationTodayExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.uakron.cs.mak138.ZippyMaps.ZippyMapsLocationTodayExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		4231A9B81E0429BA00F549C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ZippyMapsLocationTodayExtension/ZippyMapsLocationTodayExtension.entitlements;
+				DEVELOPMENT_TEAM = LTL5G688AP;
+				INFOPLIST_FILE = ZippyMapsLocationTodayExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.uakron.cs.mak138.ZippyMaps.ZippyMapsLocationTodayExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		425A15611DDB915F00865DE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -326,6 +419,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -348,7 +442,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -376,6 +470,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -392,7 +487,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -406,6 +501,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ZippyMaps/ZippyMaps.entitlements;
 				DEVELOPMENT_TEAM = LTL5G688AP;
 				INFOPLIST_FILE = ZippyMaps/Info.plist;
@@ -421,6 +517,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ZippyMaps/ZippyMaps.entitlements;
 				DEVELOPMENT_TEAM = LTL5G688AP;
 				INFOPLIST_FILE = ZippyMaps/Info.plist;
@@ -462,6 +559,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4231A9B91E0429BA00F549C0 /* Build configuration list for PBXNativeTarget "ZippyMapsLocationTodayExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4231A9B71E0429BA00F549C0 /* Debug */,
+				4231A9B81E0429BA00F549C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		425A154C1DDB915F00865DE9 /* Build configuration list for PBXProject "ZippyMaps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -487,6 +593,7 @@
 				427462951E01DAF50042EF96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

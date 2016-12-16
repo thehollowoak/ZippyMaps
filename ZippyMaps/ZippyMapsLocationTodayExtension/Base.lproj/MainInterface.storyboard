@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A313a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Next Class-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController title="Next Class" id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="ZippyMapsLocationTodayExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ft6-oW-KC0"/>
+                        <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next class: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzQ-vg-oDT">
+                                <rect key="frame" x="0.0" y="8" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgi-wq-afJ">
+                                <rect key="frame" x="0.0" y="65" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Unknown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9H-oE-3ef">
+                                <rect key="frame" x="0.0" y="94" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Unknown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fkp-9v-2gF">
+                                <rect key="frame" x="0.0" y="29" width="320" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="m9H-oE-3ef" firstAttribute="top" secondItem="Qgi-wq-afJ" secondAttribute="bottom" constant="8" id="0p8-5Q-gI0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Qgi-wq-afJ" secondAttribute="trailing" id="900-MM-tCM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="m9H-oE-3ef" secondAttribute="trailing" id="9IA-FR-8Li"/>
+                            <constraint firstItem="TzQ-vg-oDT" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="-16" id="Ezk-46-lQl"/>
+                            <constraint firstItem="Fkp-9v-2gF" firstAttribute="top" secondItem="TzQ-vg-oDT" secondAttribute="bottom" id="Lfk-7y-Xxd"/>
+                            <constraint firstAttribute="trailing" secondItem="Fkp-9v-2gF" secondAttribute="trailing" id="P0m-x0-L0S"/>
+                            <constraint firstItem="TzQ-vg-oDT" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="8" id="PVs-d2-boP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TzQ-vg-oDT" secondAttribute="trailing" constant="-16" id="Scc-k8-Sc6"/>
+                            <constraint firstItem="Fkp-9v-2gF" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="aGn-pe-zZ8"/>
+                            <constraint firstItem="m9H-oE-3ef" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="eqG-QB-W91"/>
+                            <constraint firstItem="Qgi-wq-afJ" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="opt-W4-aUO"/>
+                            <constraint firstItem="Qgi-wq-afJ" firstAttribute="top" secondItem="Fkp-9v-2gF" secondAttribute="bottom" constant="8" id="pRW-I5-ISK"/>
+                            <constraint firstItem="Qgi-wq-afJ" firstAttribute="top" secondItem="Fkp-9v-2gF" secondAttribute="bottom" constant="8" id="vbC-YL-tSj"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="200"/>
+                    <connections>
+                        <outlet property="classLabel" destination="Fkp-9v-2gF" id="g7t-LC-g1O"/>
+                        <outlet property="inLabel" destination="Qgi-wq-afJ" id="mtb-6n-pf9"/>
+                        <outlet property="timeLabel" destination="m9H-oE-3ef" id="xVf-Vk-a6b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="25.600000000000001" y="35.982008995502248"/>
+        </scene>
+    </scenes>
+</document>

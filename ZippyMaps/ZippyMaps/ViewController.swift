@@ -130,57 +130,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
-    /*
-    func drawPath(){
-        let currentUserLocation = AkronMap.userLocation.coordinate
-        
 
-        let gpsLocationStart: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: currentUserLocation.latitude, longitude: currentUserLocation.longitude)
-        let startPlacemark: MKPlacemark = MKPlacemark(coordinate: gpsLocationStart)
-        let startLocation: MKMapItem = MKMapItem(placemark: startPlacemark)
-        
-        //Destination
-        //let gpsLocationEnd: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: targetBuilding.value(forKey: "Latitude") as! Double , longitude: targetBuilding.value(forKey: "Longitude") as! Double)
-        guard let gpsLocationEnd = targetBuildingCoordinate else {
-            print("CANNOT ASSIGN END")
-            return
-        }
-        
-        print("TEST TEST TEST\(gpsLocationStart.latitude) + \(gpsLocationEnd.latitude)")
-        let endPlacemark: MKPlacemark = MKPlacemark(coordinate: gpsLocationEnd)
-        let endLocation: MKMapItem = MKMapItem(placemark: endPlacemark)
-        
-        let directionsRequest: MKDirectionsRequest = MKDirectionsRequest()
-        directionsRequest.source = startLocation
-        directionsRequest.destination = endLocation
-        directionsRequest.transportType = MKDirectionsTransportType.walking
-        
-        let directions: MKDirections = MKDirections(request: directionsRequest)
-        directions.calculate(completionHandler: {
-            response, error in
-            
-            if error == nil {
-                print("VALID ROUTE")
-                let validRoute: MKRoute = response!.routes[0]
-                //self.AkronMap.add(validRoute.polyline, level: MKOverlayLevel.aboveRoads)
-                self.classRoute = validRoute
-                self.AkronMap.add(self.classRoute.polyline, level: MKOverlayLevel.aboveRoads)
-                //self.AkronMap.addOverlays(validRoute.polyline.)
-                //let rect = validRoute.polyline.boundingMapRect
-                //self.AkronMap.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
-                print(validRoute.distance)
-                
-            }else{
-                print("INVALID ROUTE")
-            }
-            
-        })
-        
-        
-        
-    }
-    */
-    
     func testTimerFunc(){
         print("The count is \(counter)")
         counter = counter + 1
@@ -268,6 +218,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             AkronMap.addAnnotation(tempBuilding)
         }
         
+        let sharedData = UserDefaults(suiteName: "group.edu.uakron.cs.mak138.ZippyMapsUserDefaults")
+        sharedData?.set(buildings, forKey: "buildings")
+        
         
         
         
@@ -305,7 +258,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             if error == nil {
                 print("VALID ROUTE")
-                //let validRoute: MKRoute = response!.routes[0]
+
                 guard let validRoute: MKRoute = response?.routes[0] else {
                     print("Route error")
                     return
@@ -319,15 +272,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     for overlay in self.AkronMap.overlays {
                         self.AkronMap.remove(overlay)
                     }
-                    //print("Removed polyline")
+
                     self.addedRoute = false
-                    //print("Overlays : \(self.AkronMap.overlays)")
+
                 }
                 self.AkronMap.add(self.classRoute.polyline, level: MKOverlayLevel.aboveRoads)
                 self.addedRoute = true
-                //self.AkronMap.addOverlays(validRoute.polyline.)
-                //let rect = validRoute.polyline.boundingMapRect
-                //self.AkronMap.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+
                 print(validRoute.distance)
                 
             }else{
@@ -416,38 +367,116 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
         drawRouteOnMap(userLocation, building)
         */
+        openSchedulePlist()
         validTarget = false
         //openSchedulePlist()
         //print("Loaded classes: \(classes)")
         //classes.sort(by: classSorter)
         let currentTime = Date()
-        let actualTime = currentTime.timeIntervalSince1970
+        let correctedDate: Int = (Int(currentTime.timeIntervalSince1970 - 259200.0) % 604800)
+        
+        
+        print("UNIX: \(correctedDate)")
+        var magicClass: ClassSchedule?
+
+        
+
         
         for scheduleClass in classes {
-            if(scheduleClass.endTime.timeIntervalSince1970 > actualTime){
-                
-                
-                //Get the index
-                let index = scheduleClass.rowIndex
-                print("The next class index is: \(index)")
-                
-                //Parse the coordinates
-                guard let targetLongitude = buildings[index].value(forKey: "Longitude") as? Double else {
-                    print("Cannot get longitude")
-                    break
-                }
-                guard let targetLatitude = buildings[index].value(forKey: "Latitude") as? Double else {
-                    print("Cannot get latitude")
-                    break
-                }
-                targetBuildingCoordinate = CLLocationCoordinate2D(latitude: targetLatitude, longitude: targetLongitude)
-                
-                
-                //Draw the route
+            var correctedClassTime: Int = (Int(scheduleClass.endTime.timeIntervalSince1970 - 259200.0) % 604800)
+            /*
+            if(correctedClassTime < correctedDate){
+                print("Skip")
+                continue
+            }
+             */
+            
+            if(magicClass == nil){
+                magicClass = scheduleClass
                 validTarget = true
-                break
+                print("inital magic assigned")
+            }
+            
+            guard let magicClassTimeDouble: Double = magicClass?.endTime.timeIntervalSince1970 else {
+                print("Cannot grap magic time")
+                return
+            }
+            
+            /*
+            guard let magicClassCorrectedTime: Int = (Int(((magicClass?.endTime.timeIntervalSince1970)! - 259200.0)!) % 604800) else {
+                print("Time assignment failed")
+                validTarget = false
+                return
+            }
+             */
+            
+            var magicClassCorrectedTime: Int = Int(magicClassTimeDouble - 259200.0) % 604800
+            
+            if(magicClassCorrectedTime < correctedDate) {
+                magicClassCorrectedTime += correctedDate
+            }
+            
+            if(correctedClassTime < correctedDate) {
+                correctedClassTime += correctedDate
+            }
+            
+            print("Magic corrected: \(magicClassCorrectedTime)")
+            
+            if(correctedClassTime < magicClassCorrectedTime){
+                print("Changing display class from: \(magicClass) to \(scheduleClass)")
+                magicClass = scheduleClass
+                
             }
         }
+        
+        if(validTarget){
+            guard let index = magicClass?.rowIndex else {
+                print("Assignment error")
+                return
+            }
+            print("The next class index is: \(index)")
+            
+            //Parse the coordinates
+            guard let targetLongitude = buildings[index].value(forKey: "Longitude") as? Double else {
+                print("Cannot get longitude")
+                return
+            }
+            guard let targetLatitude = buildings[index].value(forKey: "Latitude") as? Double else {
+                print("Cannot get latitude")
+                return
+            }
+            targetBuildingCoordinate = CLLocationCoordinate2D(latitude: targetLatitude, longitude: targetLongitude)
+        }
+        
+  
+        
+        /*
+         for scheduleClass in classes {
+         if(scheduleClass.endTime.timeIntervalSince1970 > actualTime.truncatingRemainder(dividingBy: 604800)){
+         print("ALPHA \(scheduleClass.endTime.timeIntervalSince1970.truncatingRemainder(dividingBy: 604800)) \(actualTime.truncatingRemainder(dividingBy: 604800))")
+         
+         //Get the index
+         let index = scheduleClass.rowIndex
+         print("The next class index is: \(index)")
+         
+         //Parse the coordinates
+         guard let targetLongitude = buildings[index].value(forKey: "Longitude") as? Double else {
+         print("Cannot get longitude")
+         break
+         }
+         guard let targetLatitude = buildings[index].value(forKey: "Latitude") as? Double else {
+         print("Cannot get latitude")
+         break
+         }
+         targetBuildingCoordinate = CLLocationCoordinate2D(latitude: targetLatitude, longitude: targetLongitude)
+         
+         
+         //Draw the route
+         validTarget = true
+         break
+         }
+         }
+         */
 
         
         if(validTarget){
@@ -503,7 +532,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             return
         }
         print("URL HERE: \(url)")
-        let tempSchedule: [NSDictionary] = schedule as! [NSDictionary]
+        guard let tempSchedule: [NSDictionary] = schedule as? [NSDictionary] else {
+            print("Cannot convert schedule to NSDictionary")
+            return
+        }
         //Blank classes just in case
         classes = []
         for scheduleItem in tempSchedule {
@@ -534,7 +566,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func classSorter(_ c1: ClassSchedule, _ c2: ClassSchedule) -> Bool {
-        return c1.startTime.timeIntervalSince1970 < c2.startTime.timeIntervalSince1970
+        //return c1.startTime.timeIntervalSince1970 < c2.startTime.timeIntervalSince1970
+        
+        var c1Start: Int = Int(c1.startTime.timeIntervalSince1970)
+        var c2Start: Int = Int(c2.startTime.timeIntervalSince1970)
+        
+        //1970 DOW correction
+        //345600
+        c1Start -= 259200
+        c2Start -= 259200
+        
+        c1Start %= 604800
+        c2Start %= 604800
+        
+        print("c1: \(c1.rowIndex) c2: \(c2.rowIndex)")
+        print("c1: \(c1Start) c2: \(c2Start)")
+        return c1Start < c2Start
     }
 }
 

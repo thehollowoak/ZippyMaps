@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="16A304a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A313a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TLZ-bb-18x">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="wcy-Rw-9qi">
+            <objects>
+                <navigationController id="TLZ-bb-18x" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fae-04-KLd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="dZW-0r-rZh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l5U-2F-pV1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-855" y="124"/>
+        </scene>
+        <!--Map-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController modalTransitionStyle="flipHorizontal" id="BYZ-38-t0r" customClass="ViewController" customModule="ZippyMaps" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,39 +38,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WJM-PP-d1N">
-                                <frame key="frameInset" width="1000" height="1000"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WJM-PP-d1N">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="WJM-PP-d1N" secondAttribute="trailing" id="2vS-7I-tVQ"/>
-                            <constraint firstItem="WJM-PP-d1N" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="HHk-Kf-yXR"/>
-                            <constraint firstItem="WJM-PP-d1N" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Qi2-Gr-KQu"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WJM-PP-d1N" secondAttribute="bottom" id="aEE-e6-NOc"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WJM-PP-d1N" secondAttribute="bottom" id="3RV-MC-lfW"/>
+                            <constraint firstItem="WJM-PP-d1N" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BX2-9a-nBA"/>
+                            <constraint firstAttribute="trailing" secondItem="WJM-PP-d1N" secondAttribute="trailing" id="MEK-F7-6pG"/>
+                            <constraint firstItem="WJM-PP-d1N" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="QHz-hB-KEX"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="AvM-sr-GS2" appends="YES" id="tGn-eT-sdk"/>
-                        </connections>
                     </view>
+                    <navigationItem key="navigationItem" title="Map" id="rI7-Wk-KFJ">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="fEx-HF-7HI">
+                            <connections>
+                                <segue destination="HG1-EZ-GRc" kind="show" id="OE3-gk-1Nv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="AkronMap" destination="WJM-PP-d1N" id="F3r-Bz-RU8"/>
-                        <outlet property="mapSwipeGesture" destination="AvM-sr-GS2" id="Cdd-HW-Svp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="AvM-sr-GS2">
-                    <connections>
-                        <segue destination="HG1-EZ-GRc" kind="showDetail" id="jqv-IG-VFv"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
-        <!--CoordinatesViewController-->
+        <!--Class Schedule-->
         <scene sceneID="eMX-6B-msw">
             <objects>
-                <viewController title="CoordinatesViewController" modalTransitionStyle="flipHorizontal" id="HG1-EZ-GRc" customClass="CoordinatesViewContoller" customModule="ZippyMaps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Class Schedule" modalTransitionStyle="flipHorizontal" id="HG1-EZ-GRc" customClass="CoordinatesViewContoller" customModule="ZippyMaps" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bUm-Sb-Yfb"/>
                         <viewControllerLayoutGuide type="bottom" id="XiW-eo-I91"/>
@@ -60,14 +78,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vv3-YQ-aNN">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vv3-YQ-aNN">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yr2-xj-s9I">
+                                        <rect key="frame" x="5" y="295" width="365" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="b9p-QI-jVK"/>
                                         </constraints>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0po-UR-oMJ">
+                                        <rect key="frame" x="5" y="350" width="38" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="gyg-Gf-6rP"/>
                                         </constraints>
@@ -76,6 +97,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z0c-dS-SbK">
+                                        <rect key="frame" x="100" y="513" width="175" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="iIZ-l0-DRh"/>
                                         </constraints>
@@ -85,6 +107,7 @@
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="46" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1dP-HW-qmg">
+                                        <rect key="frame" x="5" y="5" width="365" height="259"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="259" id="oYP-H1-pTE"/>
@@ -94,10 +117,11 @@
                                                 <rect key="frame" x="0.0" y="28" width="365" height="46"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nqw-BW-n2Q" id="p5A-hl-jfL">
-                                                    <frame key="frameInset" width="365" height="46"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="365" height="46"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Building" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4N-Xt-FrT">
+                                                            <rect key="frame" x="8" y="11" width="61.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -115,6 +139,7 @@
                                         </prototypes>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6V-hG-Lpv">
+                                        <rect key="frame" x="5" y="431" width="29.5" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="JfZ-RM-YDf"/>
                                         </constraints>
@@ -123,6 +148,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qr3-G2-G9m">
+                                        <rect key="frame" x="5" y="457" width="365" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="H66-V4-dcC"/>
                                         </constraints>
@@ -131,6 +157,7 @@
                                         </date>
                                     </datePicker>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Building" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcR-sI-fwG">
+                                        <rect key="frame" x="5" y="269" width="61.5" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="cPK-he-8Pb"/>
                                         </constraints>
@@ -139,6 +166,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Me-yj-eBv">
+                                        <rect key="frame" x="280" y="512" width="90" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="90" id="aHP-h8-nGH"/>
                                             <constraint firstAttribute="height" constant="21" id="soe-hM-UbO"/>
@@ -149,6 +177,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3s-Hd-Io3">
+                                        <rect key="frame" x="5" y="512" width="90" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="MRS-qm-NgA"/>
                                         </constraints>
@@ -158,6 +187,7 @@
                                         </connections>
                                     </button>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="dfF-zX-x4I">
+                                        <rect key="frame" x="5" y="376" width="365" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="hn3-If-Kfe"/>
                                         </constraints>
@@ -165,16 +195,6 @@
                                             <!--2016-12-01 22:18:05 +0000-->
                                         </date>
                                     </datePicker>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pF-Fx-DSb">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="Cm0-Yp-gtb"/>
-                                            <constraint firstAttribute="width" constant="62" id="P74-kU-2PV"/>
-                                        </constraints>
-                                        <state key="normal" title="Route"/>
-                                        <connections>
-                                            <action selector="routeSelectPress:" destination="HG1-EZ-GRc" eventType="touchDown" id="pwX-8c-zoF"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="F3s-Hd-Io3" firstAttribute="top" secondItem="Qr3-G2-G9m" secondAttribute="bottom" constant="5" id="5Xo-Oy-fss"/>
@@ -183,28 +203,25 @@
                                     <constraint firstItem="1Me-yj-eBv" firstAttribute="top" secondItem="Qr3-G2-G9m" secondAttribute="bottom" constant="5" id="AUz-yB-MLI"/>
                                     <constraint firstItem="vcR-sI-fwG" firstAttribute="leading" secondItem="vv3-YQ-aNN" secondAttribute="leading" constant="5" id="B7z-WN-jaA"/>
                                     <constraint firstItem="F3s-Hd-Io3" firstAttribute="leading" secondItem="vv3-YQ-aNN" secondAttribute="leading" constant="5" id="C8M-iG-2uG"/>
-                                    <constraint firstAttribute="bottom" secondItem="7pF-Fx-DSb" secondAttribute="bottom" constant="5" id="El1-Hg-r6N"/>
-                                    <constraint firstItem="Z0c-dS-SbK" firstAttribute="top" secondItem="Qr3-G2-G9m" secondAttribute="bottom" constant="5" id="H06-2D-xKL"/>
+                                    <constraint firstItem="Z0c-dS-SbK" firstAttribute="top" secondItem="Qr3-G2-G9m" secondAttribute="bottom" constant="6" id="H06-2D-xKL"/>
                                     <constraint firstItem="0po-UR-oMJ" firstAttribute="top" secondItem="yr2-xj-s9I" secondAttribute="bottom" constant="5" id="H9q-3j-chx"/>
                                     <constraint firstItem="yr2-xj-s9I" firstAttribute="trailing" secondItem="1dP-HW-qmg" secondAttribute="trailing" id="HAN-PI-jMU"/>
                                     <constraint firstItem="1dP-HW-qmg" firstAttribute="leading" secondItem="vv3-YQ-aNN" secondAttribute="leading" constant="5" id="IhH-dg-dMW"/>
                                     <constraint firstItem="Qr3-G2-G9m" firstAttribute="leading" secondItem="u6V-hG-Lpv" secondAttribute="leading" id="Jgi-P4-cwb"/>
                                     <constraint firstItem="u6V-hG-Lpv" firstAttribute="top" secondItem="dfF-zX-x4I" secondAttribute="bottom" constant="5" id="NnM-lx-Wbw"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Z0c-dS-SbK" secondAttribute="bottom" constant="-3" id="ORc-rm-S8d"/>
                                     <constraint firstItem="Z0c-dS-SbK" firstAttribute="centerX" secondItem="vv3-YQ-aNN" secondAttribute="centerX" id="UsO-gd-yUo"/>
                                     <constraint firstItem="yr2-xj-s9I" firstAttribute="leading" secondItem="vcR-sI-fwG" secondAttribute="leading" id="VN3-bM-JR3"/>
                                     <constraint firstItem="u6V-hG-Lpv" firstAttribute="leading" secondItem="vv3-YQ-aNN" secondAttribute="leading" constant="5" id="W0n-Rl-b7g"/>
                                     <constraint firstItem="dfF-zX-x4I" firstAttribute="leading" secondItem="0po-UR-oMJ" secondAttribute="leading" id="XBS-02-3Cm"/>
-                                    <constraint firstItem="7pF-Fx-DSb" firstAttribute="top" secondItem="Z0c-dS-SbK" secondAttribute="bottom" constant="5" id="ZiX-tv-lBx"/>
                                     <constraint firstItem="Z0c-dS-SbK" firstAttribute="leading" secondItem="F3s-Hd-Io3" secondAttribute="trailing" constant="5" id="bUY-vs-k8n"/>
                                     <constraint firstItem="1dP-HW-qmg" firstAttribute="centerX" secondItem="vv3-YQ-aNN" secondAttribute="centerX" id="cKY-94-w9o"/>
                                     <constraint firstItem="dfF-zX-x4I" firstAttribute="top" secondItem="0po-UR-oMJ" secondAttribute="bottom" constant="5" id="eEU-tp-04L"/>
-                                    <constraint firstItem="7pF-Fx-DSb" firstAttribute="centerX" secondItem="vv3-YQ-aNN" secondAttribute="centerX" id="ecQ-Ud-xes"/>
                                     <constraint firstItem="1Me-yj-eBv" firstAttribute="leading" secondItem="Z0c-dS-SbK" secondAttribute="trailing" constant="5" id="fFl-X4-Lup"/>
                                     <constraint firstAttribute="trailing" secondItem="1dP-HW-qmg" secondAttribute="trailing" constant="5" id="qEV-Jh-h6m"/>
                                     <constraint firstItem="vcR-sI-fwG" firstAttribute="top" secondItem="1dP-HW-qmg" secondAttribute="bottom" constant="5" id="qgY-fL-ytU"/>
                                     <constraint firstItem="yr2-xj-s9I" firstAttribute="trailing" secondItem="dfF-zX-x4I" secondAttribute="trailing" id="rF1-fY-AAT"/>
                                     <constraint firstItem="Qr3-G2-G9m" firstAttribute="top" secondItem="u6V-hG-Lpv" secondAttribute="bottom" constant="5" id="sNn-Sp-Wov"/>
-                                    <constraint firstItem="7pF-Fx-DSb" firstAttribute="top" secondItem="Z0c-dS-SbK" secondAttribute="bottom" constant="5" id="uXI-bH-84D"/>
                                     <constraint firstItem="dfF-zX-x4I" firstAttribute="trailing" secondItem="Qr3-G2-G9m" secondAttribute="trailing" id="ugB-tl-fMT"/>
                                     <constraint firstAttribute="trailing" secondItem="1Me-yj-eBv" secondAttribute="trailing" constant="5" id="uz6-uJ-3Ow"/>
                                     <constraint firstItem="yr2-xj-s9I" firstAttribute="top" secondItem="vcR-sI-fwG" secondAttribute="bottom" constant="5" id="yhG-fx-WTH"/>
@@ -219,9 +236,6 @@
                             <constraint firstItem="vv3-YQ-aNN" firstAttribute="top" secondItem="dD9-Ev-7XC" secondAttribute="top" id="jya-C0-AcU"/>
                             <constraint firstItem="XiW-eo-I91" firstAttribute="top" secondItem="vv3-YQ-aNN" secondAttribute="bottom" id="wA7-Q1-kH5"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="Jsh-V0-qKr" appends="YES" id="JvY-Cq-QWD"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="addButton" destination="F3s-Hd-Io3" id="wZa-hn-3ME"/>
@@ -230,18 +244,12 @@
                         <outlet property="classScheduleTableView" destination="1dP-HW-qmg" id="IHu-QY-HIV"/>
                         <outlet property="endTimePicker" destination="Qr3-G2-G9m" id="phP-fo-6ZJ"/>
                         <outlet property="removeButton" destination="1Me-yj-eBv" id="TYg-V6-t8a"/>
-                        <outlet property="selectRouteButton" destination="7pF-Fx-DSb" id="Kaw-1b-C4N"/>
                         <outlet property="startTimePicker" destination="dfF-zX-x4I" id="4ni-Pk-qIS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4CU-5B-quJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="Jsh-V0-qKr">
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" id="lnh-J6-NsZ"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2277.5999999999999" y="-85.007496251874073"/>
+            <point key="canvasLocation" x="1216.8" y="123.68815592203899"/>
         </scene>
     </scenes>
 </document>
